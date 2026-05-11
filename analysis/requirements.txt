@@ -1,0 +1,21 @@
+## requirements for the yamcs_archive.ipynb notebook
+# This file lists the Python package dependencies required to run the notebook.
+# install with:
+# cd im2-yaoki-yamcs-public
+# python3 -m venv .venv/yaoki
+# pip install -r analysis/requirements.txt
+
+# Core data science libraries
+pandas>=1.5.0
+numpy>=1.21.0
+matplotlib>=3.5.0
+
+# Interactive plotting
+plotly>=5.0.0
+
+# YAMCS client for telemetry data
+yamcs-client>=1.8.0
+
+# Jupyter notebook support
+jupyter>=1.0.0
+ipykernel>=6.0.0

@@ -1,0 +1,30 @@
+# Eclipse metadata
+**/.settings/
+**/.classpath
+**/.project
+
+# Maven output
+/target/
+# Yamcs build artefacts
+yamcs-server/target/
+
+# VSCode
+.vscode/settings.json
+
+# Docker logs for CI
+docker/all.log
+
+# Yamcs-Studio Metadata
+.project
+
+# data files
+*.csv
+
+# Jupyter
+*.ipynb_checkpoints
+
+# passwords etc
+**donotcommit**
+
+# virtual environment
+**/.venv/

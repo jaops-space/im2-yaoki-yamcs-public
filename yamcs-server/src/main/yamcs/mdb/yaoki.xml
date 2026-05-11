@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpaceSystem name="YAOKI" xmlns="http://www.omg.org/spec/XTCE/20180204"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.omg.org/spec/XTCE/20180204 https://www.omg.org/spec/XTCE/20180204/SpaceSystem.xsd">
+	<TelemetryMetaData>
+		<ParameterTypeSet>
+			<IntegerParameterType name="uint32_t" signed="false">
+				<UnitSet />
+				<IntegerDataEncoding encoding="unsigned" sizeInBits="32" />
+			</IntegerParameterType>
+			<IntegerParameterType name="int32_t" signed="true">
+				<IntegerDataEncoding encoding="twosComplement" sizeInBits="32" />
+			</IntegerParameterType>
+			<FloatParameterType name="float_t">
+				<UnitSet />
+				<FloatDataEncoding sizeInBits="32" />
+			</FloatParameterType>
+			<StringParameterType name="string">			
+			</StringParameterType>
+		</ParameterTypeSet>
+	</TelemetryMetaData>
+
+	<SpaceSystem name="Lander">
+		<TelemetryMetaData>
+			<ParameterTypeSet>			
+				<FloatParameterType name="voltage_t">
+					<UnitSet>
+						<Unit>V</Unit>
+					</UnitSet>
+					<FloatDataEncoding sizeInBits="32" />
+				</FloatParameterType>
+				<FloatParameterType name="adc_t">
+					<UnitSet>
+						<Unit>ADC</Unit>
+					</UnitSet>
+					<FloatDataEncoding sizeInBits="32" />
+				</FloatParameterType>
+				<IntegerParameterType name="percentage_t">
+					<UnitSet>
+						<Unit>%</Unit>
+					</UnitSet>
+					<IntegerDataEncoding sizeInBits="32" />
+				</IntegerParameterType>
+				<FloatParameterType name="temperature_t">
+					<UnitSet>
+						<Unit>°C</Unit>
+					</UnitSet>
+					<FloatDataEncoding sizeInBits="32" />
+				</FloatParameterType>
+				<EnumeratedParameterType name="on_off_t">
+					<IntegerDataEncoding sizeInBits="1" />
+					<EnumerationList>
+						<Enumeration value="0" label="OFF" />
+						<Enumeration value="1" label="ON" />
+					</EnumerationList>
+				</EnumeratedParameterType>
+				<EnumeratedParameterType name="yes_no_t">
+					<IntegerDataEncoding sizeInBits="1" />
+					<EnumerationList>
+						<Enumeration value="0" label="NO" />
+						<Enumeration value="1" label="YES" />
+					</EnumerationList>
+				</EnumeratedParameterType>
+			</ParameterTypeSet>
+			<ParameterSet>
+				<Parameter name="temperature0" parameterTypeRef="temperature_t" 
+					shortDescription="Temperature in Degrees C of on enclosure by burn wire deployment mechanism" />
+				<Parameter name="temperature1" parameterTypeRef="temperature_t"  
+					shortDescription="Temperature in Degrees C of on enclosure by mounting bracket" />
+				<Parameter name="streamQueuePercent" parameterTypeRef="percentage_t"  
+					shortDescription="Data in stream out queue needing to be sent" />
+				<Parameter name="streamCount" parameterTypeRef="uint32_t"  
+					shortDescription="Stream out messages sent count" />
+				<Parameter name="streamErrCount" parameterTypeRef="uint32_t"  
+					shortDescription="Stream out messages ERROR count" />
+				<Parameter name="storeForwardCount" parameterTypeRef="uint32_t"  
+					shortDescription="The count of store and forward data packets sent" />
+				<Parameter name="storeErrCount" parameterTypeRef="uint32_t"  
+					shortDescription="The count of store and forward data packets ERRORS" />
+				<Parameter name="rover_voltage" parameterTypeRef="adc_t"  
+					shortDescription="Raw ADC counts of measured voltage" />
+				<Parameter name="rover_status" parameterTypeRef="on_off_t"  
+					shortDescription="State, 0 = OFF, 1 = ON" />
+				<Parameter name="launchLock_voltage"
+					parameterTypeRef="adc_t"  
+					shortDescription="Raw ADC counts of measured voltage" />
+				<Parameter name="launchLock_status" parameterTypeRef="on_off_t"  
+					shortDescription="State, 0 = OFF, 1 = ON" />
+				<Parameter name="heater_voltage" parameterTypeRef="adc_t"  
+					shortDescription="Raw ADC counts of measured voltage" />
+				<Parameter name="heater_status" parameterTypeRef="on_off_t"  
+					shortDescription="State, 0 = OFF, 1 = ON" />
+				<Parameter name="hasUHFPing" parameterTypeRef="yes_no_t"  
+					shortDescription="0 = No pings from Yaoki over UHF, 1 = pings from Yaoki over UHF" />
+				<Parameter name="forwardCmdCount" parameterTypeRef="uint32_t"  
+					shortDescription="Count of commands that are successfully forwarded to Yaoki" />
+				<Parameter name="fwdCmdErrCount" parameterTypeRef="uint32_t"  
+					shortDescription="Count of commands that are NOT successfully forwarded to Yaoki" />
+				<Parameter name="cmdCount" parameterTypeRef="uint32_t"  
+					shortDescription="Count of commands to PLD.YAOKI App" />
+				<Parameter name="commandQueue" parameterTypeRef="string"  
+					shortDescription="TBD (Status of the YAOKI command queue in IM ground segement?)" />
+
+			</ParameterSet>
+
+		</TelemetryMetaData>
+	</SpaceSystem>
+	<SpaceSystem name="Rover">
+		<TelemetryMetaData>
+			<ParameterTypeSet>				
+				<FloatParameterType name="temperature_t">
+					<UnitSet>
+						<Unit>°C</Unit>
+					</UnitSet>
+					<FloatDataEncoding sizeInBits="32" />
+				</FloatParameterType>
+			</ParameterTypeSet>
+			<ParameterSet>
+				<Parameter name="Accelerometer_X" parameterTypeRef="uint32_t" 
+					shortDescription="Raw accelerometer data: X-axis">
+					<LongDescription>
+	Raw accelerometer data, X-axis, directly read from the i2c bus. no casting no scaling meant to be sent at the highest possible frequency
+					</LongDescription>
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="Xr" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="Accelerometer_Y" parameterTypeRef="uint32_t"
+					shortDescription="Raw accelerometer data: Y-axis">
+					<LongDescription>
+	Raw accelerometer data, Y-axis, directly read from the i2c bus. no casting no scaling meant to be sent at the highest possible frequency
+					</LongDescription>
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="Yr" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="Accelerometer_Z" parameterTypeRef="uint32_t"
+					shortDescription="Raw accelerometer data: Z-axis">
+					<LongDescription>
+	Raw accelerometer data, Z-axis, directly read from the i2c bus. no casting no scaling meant to be sent at the highest possible frequency
+					</LongDescription>
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="Zr" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="Status" parameterTypeRef="uint32_t"
+					shortDescription="Raw status. Prefer to use the split status parameters instead">
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="S" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="VBAT_CHECK" parameterTypeRef="uint32_t"
+					shortDescription="Yaoki power source: 0 if on lander power / 1 if on internal battery power">
+					<LongDescription>
+	l.204: boolean that returns 0 if using power from the lander and 1 if using the internal Yaoki battery
+	GPIO measurement that confirms that the command "bat":"1" was successfully executed (DC_Relay_ON())
+					</LongDescription>
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="B" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="last_rssi" parameterTypeRef="int32_t"
+					shortDescription="Last received RSSI value from the lander-rover UHF radio link">
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="I" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="accelerometer_x" parameterTypeRef="float_t"
+					shortDescription="Scaled accelerometer data: x-axis">
+					<LongDescription>
+	Accelerometer data, x-axis, scaled and casted to float.
+					</LongDescription>
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="x" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="accelerometer_y" parameterTypeRef="float_t"
+					shortDescription="Scaled accelerometer data: y-axis">
+					<LongDescription>
+	Accelerometer data, y-axis, scaled and casted to float.
+					</LongDescription>
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="y" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="accelerometer_z" parameterTypeRef="float_t"
+					shortDescription="Scaled accelerometer data: z-axis">
+					<LongDescription>
+	Accelerometer data, z-axis, scaled and casted to float.
+					</LongDescription>
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="z" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="Tx_cnt" parameterTypeRef="uint32_t"
+					shortDescription="Number of sent telemetry packet sets">
+					<LongDescription>
+	Simple counter that increments at each 'Send TLM' time allocation (~30 seconds)
+	(the two telemetry packet sent at the same time are only counted as one)
+	Min value: 0
+	Max value: 98 (then resets to 0) 
+					</LongDescription>
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="T" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="ADC_TEMP0" parameterTypeRef="float_t"
+					shortDescription="Temperature sensor 0">					
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="0" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="ADC_TEMP1" parameterTypeRef="float_t"
+					shortDescription="Temperature sensor 1">
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="1" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="ADC_TEMP2" parameterTypeRef="float_t"
+					shortDescription="Temperature sensor 2">
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="2" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="ADC_TEMP3" parameterTypeRef="float_t"
+					shortDescription="Temperature sensor 3">
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="3" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="ADC_TEMP4" parameterTypeRef="float_t"
+					shortDescription="Temperature sensor 4">
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="4" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="ADC_TEMP5" parameterTypeRef="float_t"
+					shortDescription="Temperature sensor 5">
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="5" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="ADC_TEMP6" parameterTypeRef="float_t"
+					shortDescription="Temperature sensor 6">
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="6" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="ADC_TEMP7" parameterTypeRef="float_t"
+					shortDescription="Temperature sensor 7">
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="7" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="CamSent_cnt" parameterTypeRef="uint32_t"
+					shortDescription="Number of images sent">
+					<LongDescription>
+	Simple counter that increments by 1 for every 960 camera packet sent (corresponds to each camera image).
+	This same counter is used in the CSP header of the camera packets.
+	Min value: 0
+	Max value: 99 (then resets to 0)
+					</LongDescription>
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="C" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="Rx_cnt" parameterTypeRef="uint32_t"
+					shortDescription="Number of valid commands received">
+					<LongDescription>
+	Simple counter that increments for each valid command received
+	Commands are considered valid if more than 5 key/value pairs in the JSON string. The nominal number is 7.
+	Note: if the command has between 1 and 5 key/value pairs, the command is still processed (!) but Rx_cnt is not incremented (!!)
+	Note: pings are not commands.
+	Min value: 0
+	Max value: 98 (then resets to 0)
+					</LongDescription>
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="R" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="RxError_cnt" parameterTypeRef="uint32_t"
+					shortDescription="Number of error commands received">
+					<LongDescription>
+	Simple counter that increments for each command received that is considered eroneous (and therefore not processed).
+	The error criteria is if the command has zero key/value pairs in the JSON string.
+	Min value: 0
+	Max value: 98 (then resets to 0)
+					</LongDescription>
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="E" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="Status_TLM" parameterTypeRef="uint32_t"
+					shortDescription="Raw status telemetry. Prefer to use the split status parameters instead" />
+				<Parameter name="Status_BAT" parameterTypeRef="uint32_t"
+					shortDescription="Status battery on">
+					<LongDescription>
+	l.291: Cleared at the start of main.c (before the main while loop) after setting DC_Relay_OFF
+	l.631: Set if command is received with {"bat": "1"}
+	l.635: Cleared if command is received with {"bat": "0"}
+					</LongDescription>
+				</Parameter>
+				<Parameter name="Status_ICUT" parameterTypeRef="uint32_t"
+					shortDescription="The deployment wire is currently being cut">
+					<LongDescription>
+	Indicates that the wire is being cut by the activation of the Heater Relay for a set number of seconds. 
+	The nominal sequence of this status is cleared -> set (with command {"cut": "1"}) -> cleared (after the set number of seconds)
+	l.718: Cleared if isCut!= 1
+	l.810: Cleared similarly (first case is if isCamData == 1. / Second case is if isCamData == 0)
+	l.836: Set if isCut == 1 and cut_cnt == 0. Note: then blocks to send the high frequency accelerometer data TxGsenData_CutDrop()
+	l.853: Cleared if (cut_cnt > cut_time). Note: then Heater_Relay_OFF() and Sets STATUS_WASCUT
+					</LongDescription>
+				</Parameter>
+				<Parameter name="Status_CAM" parameterTypeRef="uint32_t"
+					shortDescription="The camera is actively taking the picture / sending the data via CSP">
+					<LongDescription>
+	l.732: Cleared if the previous loop had isCamData == 1 and the current loop has isCamData == 0
+	l.869: Set if(isCamData == 1) AND if(sent_camera_packet_cnt==0)
+	l.902 and l.905: Cleared if(sent_camera_packet_cnt>=960). Note: at the same time as Camera_ToCPU_End() and isCamData=0;
+					</LongDescription>
+				</Parameter>
+				<Parameter name="Status_MOVE" parameterTypeRef="uint32_t"
+					shortDescription="The rover should be moving (e.g time remains since the last move command set the move timer">
+					<LongDescription>
+	l.685: Cleared if isMove != 1. which should mean "and get Stop motor command while moving , or No commands while being stay"
+	l.777: Cleared similarly (first case is if isCamData == 1 / Second case is if isCamData == 0)
+	l.925: Set if isMove==1 AND Move_cnt == 0
+	l.944: Cleared if (Move_cnt > Move_time). Note: at the same time as BLDC_1_OFF() and BLDC_2_OFF()
+					</LongDescription>
+				</Parameter>
+				<Parameter name="Status_NORX" parameterTypeRef="uint32_t"
+					shortDescription="No pings received for 3 minutes">
+					<LongDescription>
+	l.415: Set if (NoRx_cnt > NORX_LIMIT) Note: at the same time, the two motors are commanded forward for 30ms. Then the counter resets
+	l.603: Cleared if ping is received.
+	l.626: Cleared if a command is received.
+					</LongDescription>
+				</Parameter>
+				<Parameter name="Status_WCUT" parameterTypeRef="uint32_t"
+					shortDescription="The command to cut the wire was sent AND the time allocated for the wire cut heater has ellapsed">
+					<LongDescription>
+	l.854: Set if (cut_cnt > cut_time). Note: at the same time as Heater_Relay_OFF() and STATUS_WIRECUT is cleared
+	(never cleared)
+					</LongDescription>
+				</Parameter>
+				<Parameter name="CamSend_num" parameterTypeRef="uint32_t" shortDescription="Current image number">
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="CamSend_num" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="last_packet_num" parameterTypeRef="uint32_t" shortDescription="Last packet number of the current image">
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="last_packet_num" />
+					</AliasSet>
+				</Parameter>
+				<Parameter name="missing_packet_cnt" parameterTypeRef="uint32_t" shortDescription="The number of packets missing from the current image">
+					<AliasSet>
+						<Alias nameSpace="YAOKI" alias="missing_packet_cnt" />
+					</AliasSet>
+				</Parameter>
+			</ParameterSet>
+			<AlgorithmSet>
+				<CustomAlgorithm name="status_split">
+					<!-- <AlgorithmText language="JavaScript">
+						s = Status.rawValue;
+						Status_TLM.rawValue = s &amp; 1;
+						Status_BAT.rawValue = (s >> 1) &amp; 1;
+						Status_ICUT.rawValue = (s >> 2) &amp; 1;
+						Status_CAM.rawValue = (s >> 3) &amp; 1;
+						Status_MOVE.rawValue = (s >> 4) &amp; 1;
+						Status_NORX.rawValue = (s >> 5) &amp; 1;
+						Status_WCUT.rawValue = (s >> 6) &amp; 1;
+					</AlgorithmText> -->
+					<AlgorithmText language="JavaScript">
+						s = Status.rawValue;
+
+						if (s &lt; 20) {
+							Status_BAT.rawValue = 0;
+							Status_WCUT.rawValue = 0;
+						} else if (s &lt; 70) {
+							Status_BAT.rawValue = 1;
+							Status_WCUT.rawValue = 0;
+							s = s - 20;
+						} else {
+							Status_BAT.rawValue = 1;
+							Status_WCUT.rawValue = 1;
+							s = s - 70;
+						}
+
+						Status_TLM.rawValue = s &amp; 1;
+						Status_CAM.rawValue = (s >> 1) &amp; 1;
+						Status_MOVE.rawValue = (s >> 2) &amp; 1;
+						Status_NORX.rawValue = (s >> 3) &amp; 1;
+						Status_ICUT.rawValue = (s >> 4) &amp; 1;
+					</AlgorithmText>
+					<InputSet>
+						<InputParameterInstanceRef parameterRef="Status" />
+					</InputSet>
+					<OutputSet>
+						<OutputParameterRef parameterRef="Status_TLM" />
+						<OutputParameterRef parameterRef="Status_BAT" />
+						<OutputParameterRef parameterRef="Status_ICUT" />
+						<OutputParameterRef parameterRef="Status_CAM" />
+						<OutputParameterRef parameterRef="Status_MOVE" />
+						<OutputParameterRef parameterRef="Status_NORX" />
+						<OutputParameterRef parameterRef="Status_WCUT" />
+					</OutputSet>
+					<TriggerSet>
+						<OnParameterUpdateTrigger parameterRef="Status" />
+					</TriggerSet>
+				</CustomAlgorithm>
+			</AlgorithmSet>
+		</TelemetryMetaData>
+		<CommandMetaData>
+			<ArgumentTypeSet>
+				<EnumeratedArgumentType name="camera_channel_t" initialValue="streaming">
+					<!-- the parameter changes the CSP port that the camera data will be sent to -->
+					<IntegerDataEncoding sizeInBits="32" />
+					<EnumerationList>
+						<Enumeration value="1" label="streaming" />
+						<Enumeration value="2" label="store_and_forward" />
+					</EnumerationList>
+				</EnumeratedArgumentType>
+				<EnumeratedArgumentType name="cancel_t" initialValue="cancel">
+					<IntegerDataEncoding sizeInBits="32" encoding="signMagnitude"/>
+					<EnumerationList>
+						<Enumeration value="-9999" label="cancel" />
+					</EnumerationList>
+				</EnumeratedArgumentType>
+				<EnumeratedArgumentType name="exec_t" initialValue="execute">
+					<IntegerDataEncoding sizeInBits="32" />
+					<EnumerationList>
+						<Enumeration value="1" label="execute" />
+					</EnumerationList>
+				</EnumeratedArgumentType>
+				<EnumeratedArgumentType name="no_op_t" initialValue="no_op">
+					<IntegerDataEncoding sizeInBits="32" />
+					<EnumerationList>
+						<Enumeration value="0" label="no_op" />
+					</EnumerationList>
+				</EnumeratedArgumentType>
+				<IntegerArgumentType name="drive_move_t" signed="true">
+					<UnitSet>
+						<Unit>s</Unit>
+					</UnitSet>
+					<IntegerDataEncoding sizeInBits="32" />
+					<ValidRangeSet>
+						<ValidRange minInclusive="-9999" maxInclusive="9998" />
+					</ValidRangeSet>
+				</IntegerArgumentType>
+				<IntegerArgumentType name="wire_cut_t" signed="true">
+					<UnitSet>
+						<Unit>s</Unit>
+					</UnitSet>
+					<IntegerDataEncoding sizeInBits="32" />
+					<ValidRangeSet>
+						<ValidRange minInclusive="0" maxInclusive="9998" />
+					</ValidRangeSet>
+				</IntegerArgumentType>
+			</ArgumentTypeSet>
+			<MetaCommandSet>
+				<MetaCommand name="NO_OP">
+					<ArgumentList>
+						<Argument argumentTypeRef="no_op_t" name="bat" />
+						<Argument argumentTypeRef="no_op_t" name="cut" />
+						<Argument argumentTypeRef="no_op_t" name="left" />
+						<Argument argumentTypeRef="no_op_t" name="right" />
+						<Argument argumentTypeRef="no_op_t" name="cam" />
+						<Argument argumentTypeRef="no_op_t" name="srst" />
+						<Argument argumentTypeRef="no_op_t" name="hrst" />
+					</ArgumentList>
+				</MetaCommand>
+				<MetaCommand name="InitBattery">
+					<ArgumentList>
+						<Argument argumentTypeRef="exec_t" name="bat" />
+					</ArgumentList>
+				</MetaCommand>
+				<MetaCommand name="CutWire">
+					<ArgumentList>
+						<Argument argumentTypeRef="wire_cut_t" name="cut" />
+					</ArgumentList>
+				</MetaCommand>
+				<MetaCommand name="RotateLeftAndRightMotors">
+					<ArgumentList>
+						<Argument argumentTypeRef="drive_move_t" name="left" />
+						<Argument argumentTypeRef="drive_move_t" name="right" />
+					</ArgumentList>
+				</MetaCommand>
+				<MetaCommand name="RotateLeftMotor">
+					<ArgumentList>
+						<Argument argumentTypeRef="drive_move_t" name="left" />
+					</ArgumentList>
+				</MetaCommand>
+				<MetaCommand name="RotateRightMotor">
+					<ArgumentList>
+						<Argument argumentTypeRef="drive_move_t" name="right" />
+					</ArgumentList>
+				</MetaCommand>
+				<MetaCommand name="ResetSoft">
+					<ArgumentList>
+						<Argument argumentTypeRef="exec_t" name="srst" />
+					</ArgumentList>
+				</MetaCommand>
+				<MetaCommand name="ResetHard">
+					<ArgumentList>
+						<Argument argumentTypeRef="exec_t" name="hrst" />
+					</ArgumentList>
+				</MetaCommand>
+				<MetaCommand name="CaptureCamera">
+					<ArgumentList>
+						<Argument argumentTypeRef="camera_channel_t" name="cam" />
+					</ArgumentList>
+				</MetaCommand>
+				<MetaCommand name="CaptureCameraCancel">
+					<ArgumentList>
+						<Argument argumentTypeRef="cancel_t" name="cam" />
+					</ArgumentList>
+				</MetaCommand>
+				<MetaCommand name="RotateMotorsCancel">
+					<ArgumentList>
+						<Argument argumentTypeRef="cancel_t" name="left" />
+						<Argument argumentTypeRef="cancel_t" name="right" />
+					</ArgumentList>
+				</MetaCommand>
+				<MetaCommand name="CutWireCancel">
+					<ArgumentList>
+						<Argument argumentTypeRef="cancel_t" name="cut" />
+					</ArgumentList>
+				</MetaCommand>
+			</MetaCommandSet>
+		</CommandMetaData>
+	</SpaceSystem>
+</SpaceSystem>
