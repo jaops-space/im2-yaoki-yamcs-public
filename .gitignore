@@ -28,3 +28,7 @@ docker/all.log
 
 # virtual environment
 **/.venv/
+
+# Yamcs database
+# data/yamcs-data-initial includes data from Yaoki. Additional database entries from running Yamcs after the mission are not relevant and should be ignored
+***/yamcs-data/***
