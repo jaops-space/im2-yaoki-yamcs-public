@@ -1,0 +1,8 @@
+services:
+  yaoki:
+    build: .
+    ports:
+      - "8090:8090"
+      - "8888:8888"
+    volumes:
+      - .:/yaoki
