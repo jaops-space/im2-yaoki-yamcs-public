@@ -45,7 +45,7 @@ An example Jupyter notebook demonstrates this process
 ```bash
 cd im2-yaoki-yamcs-public
 python3 -m venv .venv/yaoki
-source venv/yaoki/bin/activate
+source .venv/yaoki/bin/activate
 pip install -r analysis/requirements.txt
 ```
 2. Open VS Code and run the notebook: `analysis/yamcs_archive.ipynb`
