@@ -1,0 +1,68 @@
+Name: YAOKI Lunar Rover IM-2 Mission Telemetry and Imagery Dataset
+Description: |
+  Mission telemetry and imagery from Dymon's YAOKI Lunar rover, which was deployed aboard the Intuitive Machines IM-2 lander to the Lunar south pole (lat=84.79059, lon=29.19567). JAOPS conducted operations between 2025-03-07 02:17:15+00.00 and 2025-03-07 04:33:04+00.00 using the open source Yamcs Mission Control System. This dataset contains telemetry received from the rover, relevant lander telemetry shared by the IM-2 team, telecommands sent to the rover, and images captured by the rover's camera.  The Yamcs archive allows replay of the original mission control environment. 
+Documentation: https://github.com/jaops-space/im2-yaoki-yamcs-public
+Contact: Louis Burtz (ljburtz@jaops.com), Alejandro Sela (asela@jaops.com)
+ManagedBy: "[JAOPS](https://www.jaops.com/)"
+UpdateFrequency: The dataset is static. The IM-2 / YAOKI mission concluded in March 2025; no further updates are expected.
+Tags:
+  - aws-pds
+  - planetary
+  - robotics
+  - astronomy
+  - lunar
+License: CC-BY-4.0
+Citation: "JAOPS and Dymon Co., Ltd. (2025). Dymon YAOKI Lunar Rover Mission Data (IM-2).
+  Registry of Open Data on AWS." # TODO verify this citation.
+Resources:
+  - Description: |
+      Time series data stored as csv and parquet for primary telemetry (TM) and telecommand (TC) channels.
+    ARN: arn:aws:s3:::im2-yaoki-rover/timeseries/*  
+    Region: ap-northeast-1
+    Type: S3 Bucket
+  - Description: |
+      Lunar surface imagery captured by the YAOKI imager, provided both as raw sensor
+      payloads (.raw) and reconstructed PNG images.
+    ARN: arn:aws:s3:::im2-yaoki-rover/images/*
+    Region: ap-northeast-1
+    Type: S3 Bucket
+  - Description: |
+      Yamcs server configuration, Mission Database (MDB / XTCE), and Docker setup
+      used during flight, enabling the archive to be replayed in an environment
+      identical to the one used in real operations.
+    ARN: arn:aws:s3:::im2-yaoki-rover/docker/*
+    Region: ap-northeast-1
+    Type: S3 Bucket
+  - Description: |
+      Complete mission archive: Yamcs RocksDB data store containing all received
+      telemetry packets and parameters, sent telecommands, and engineering events from
+      the YAOKI rover and the relayed IM-2 lander telemetry. Includes both the
+      end-of-mission state (`yamcs-data/`) and the pristine pre-mission initial state
+      (`yamcs-data-initial/`) so the mission can be replayed from t-0.
+    ARN: arn:aws:s3:::im2-yaoki-rover/yamcs-data/*
+    Region: ap-northeast-1
+    Type: S3 Bucket
+DataAtWork:
+  Tutorials:
+    - Title: Plotting the YAOKI telemetry and telecommands
+      URL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yamcs_archive.ipynb
+      NotebookURL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yamcs_archive.ipynb
+      AuthorName: JAOPS
+      AuthorURL: https://www.jaops.com/
+      Services: EC2  # TODO: adjust if a different AWS service is recommended for running the notebook
+    - Title: Running the YAOKI Yamcs mission control stack locally via Docker
+      URL: https://github.com/jaops-space/im2-yaoki-yamcs-public#docker-setup
+      AuthorName: JAOPS
+      AuthorURL: https://www.jaops.com/
+      Services: EC2 # TODO: adjust if a different AWS service is recommended for running the notebook
+  Tools & Applications:
+    - Title: Yamcs Mission Control System
+      URL: https://yamcs.org/
+      AuthorName: Space Applications Services
+      AuthorURL: https://www.spaceapplications.com/
+  Publications:
+    - Title: TODO — add any mission papers, press articles, or post-mission reports here
+      URL: https://example.com/
+      AuthorName: TODO
+# ADXCategories:  # Optional. None of the existing ADX categories obviously fit a lunar mission dataset — leave commented out unless AWS Data Exchange listing is desired.
+#   - Public Sector Data
