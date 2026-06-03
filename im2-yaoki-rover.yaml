@@ -49,6 +49,12 @@ DataAtWork:
       AuthorName: JAOPS
       AuthorURL: https://www.jaops.com/
       Services: EC2  # TODO: adjust if a different AWS service is recommended for running the notebook
+    - Title: Images from the YAOKI rover camera
+      URL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yamcs_tmtc.ipynb
+      NotebookURL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yamcs_tmtc.ipynb
+      AuthorName: JAOPS
+      AuthorURL: https://www.jaops.com/
+      Services: EC2  # TODO: adjust if a different AWS service is recommended for running the notebook
     - Title: Running the YAOKI Yamcs mission control stack locally via Docker
       URL: https://github.com/jaops-space/im2-yaoki-yamcs-public#docker-setup
       AuthorName: JAOPS
