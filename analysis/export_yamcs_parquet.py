@@ -4,13 +4,13 @@
 from __future__ import annotations
 
 import argparse
-import json
 import re
 import io
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 import pandas as pd
+import yaml
 from yamcs.client import YamcsClient
 
 def require_keys(mapping: dict[str, Any], keys: tuple[str, ...], context: str) -> None:
@@ -20,7 +20,7 @@ def require_keys(mapping: dict[str, Any], keys: tuple[str, ...], context: str) -
 
 
 def load_config(path: Path) -> dict[str, Any]:
-    config = json.loads(path.read_text(encoding="utf-8"))
+    config = yaml.safe_load(path.read_text(encoding="utf-8"))
     require_keys(
         config,
         ("defaults", "telemetry_streams", "status_streams", "commands"),
@@ -94,7 +94,7 @@ def write_metadata(
     display_name: str | None = None,
     unit: str | None = None,
 ) -> Path:
-    metadata_path = output_path.with_suffix(".metadata.json")
+    metadata_path = output_path.with_suffix(".metadata.yaml")
     metadata = {
             "kind": kind,
             "source_name": source_name,
@@ -113,7 +113,7 @@ def write_metadata(
         metadata["display_name"] = display_name
     if unit is not None:
         metadata["unit"] = unit
-    metadata_path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
+    metadata_path.write_text(yaml.safe_dump(metadata, sort_keys=False), encoding="utf-8")
     return metadata_path
 
 def export_telemetry_stream(
@@ -216,7 +216,7 @@ def export_commands(
 
 def main() -> None:
     config_parser = argparse.ArgumentParser(add_help=False)
-    config_parser.add_argument("--config", default='export_yamcs_parquet.json', type=Path, help="JSON export configuration")
+    config_parser.add_argument("--config", default="export_yamcs_parquet.yaml", type=Path, help="YAML export configuration")
     config_args, _ = config_parser.parse_known_args()
     config = load_config(config_args.config)
     defaults = config["defaults"]
@@ -274,7 +274,7 @@ def main() -> None:
         )
         manifest["telemetry_streams"][stream_name] = {
             "file": str(output_path.relative_to(args.output_dir)),
-            "metadata": str(output_path.with_suffix(".metadata.json").relative_to(args.output_dir)),
+            "metadata": str(output_path.with_suffix(".metadata.yaml").relative_to(args.output_dir)),
             "rows": count,
         }
         print(f"  {stream_name}: {count} rows")
@@ -293,7 +293,7 @@ def main() -> None:
         )
         manifest["status_streams"][stream_name] = {
             "file": str(output_path.relative_to(args.output_dir)),
-            "metadata": str(output_path.with_suffix(".metadata.json").relative_to(args.output_dir)),
+            "metadata": str(output_path.with_suffix(".metadata.yaml").relative_to(args.output_dir)),
             "rows": count,
         }
         print(f"  {stream_name}: {count} rows")
@@ -302,13 +302,14 @@ def main() -> None:
     count = export_commands(archive, command_path, start, stop, config["commands"])
     manifest["commands"] = {
         "file": str(command_path.relative_to(args.output_dir)),
-        "metadata": str(command_path.with_suffix(".metadata.json").relative_to(args.output_dir)),
+        "metadata": str(command_path.with_suffix(".metadata.yaml").relative_to(args.output_dir)),
         "rows": count,
     }
     print(f"Exported commands: {count} rows")
 
-    (args.output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
-    print(f"Wrote manifest: {args.output_dir / 'manifest.json'}")
+    manifest_path = args.output_dir / "manifest.yaml"
+    manifest_path.write_text(yaml.safe_dump(manifest, sort_keys=False), encoding="utf-8")
+    print(f"Wrote manifest: {manifest_path}")
 
 
 if __name__ == "__main__":
