@@ -1,0 +1,402 @@
+{
+  "defaults": {
+    "url": "localhost:8090",
+    "instance": "im2-yaoki", 
+    "output_dir": "yaoki_parquet",
+    "start": "2025-02-27T00:16:30+00:00",
+    "stop": "2025-03-07T05:42:56.476+00:00", 
+    "range_min_gap": 300.0
+  },
+  "telemetry_streams": [
+    {
+      "name": "/YAOKI/Rover/ADC_TEMP0",
+      "display_name": "R0: Body (Bottom)",
+      "description": "Rover temperature sensor 0, mounted on the bottom of the rover body.",
+      "unit": "deg C",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for R0: Body (Bottom). Units: deg C.",
+        "eng_value": "Engineering value for R0: Body (Bottom). Units: deg C. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/ADC_TEMP1",
+      "display_name": "R1: Motor board (middleboard)",
+      "description": "Rover temperature sensor 1, mounted on the motor board on the middle board stack.",
+      "unit": "deg C",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for R1: Motor board (middleboard). Units: deg C.",
+        "eng_value": "Engineering value for R1: Motor board (middleboard). Units: deg C. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/ADC_TEMP2",
+      "display_name": "R2: UHF radio",
+      "description": "Rover temperature sensor 2, mounted at the UHF radio.",
+      "unit": "deg C",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for R2: UHF radio. Units: deg C.",
+        "eng_value": "Engineering value for R2: UHF radio. Units: deg C. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/ADC_TEMP3",
+      "display_name": "R3: Body (Top)",
+      "description": "Rover temperature sensor 3, mounted on the top of the rover body.",
+      "unit": "deg C",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for R3: Body (Top). Units: deg C.",
+        "eng_value": "Engineering value for R3: Body (Top). Units: deg C. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/ADC_TEMP4",
+      "display_name": "R4: On CPU (Middle)",
+      "description": "Rover temperature sensor 4, mounted near the CPU on the middle board.",
+      "unit": "deg C",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for R4: On CPU (Middle). Units: deg C.",
+        "eng_value": "Engineering value for R4: On CPU (Middle). Units: deg C. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/ADC_TEMP5",
+      "display_name": "R5: Temperature data not sent",
+      "description": "Rover temperature sensor 5. No samples are present in this exported dataset because this temperature channel was not sent in telemetry.",
+      "unit": "deg C",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for R5: Temperature data not sent. Units: deg C.",
+        "eng_value": "Engineering value for R5: Temperature data not sent. Units: deg C. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/ADC_TEMP6",
+      "display_name": "R6: Battery (Bottom)",
+      "description": "Rover temperature sensor 6, mounted at the bottom of the battery.",
+      "unit": "deg C",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for R6: Battery (Bottom). Units: deg C.",
+        "eng_value": "Engineering value for R6: Battery (Bottom). Units: deg C. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/ADC_TEMP7",
+      "display_name": "R7: Battery (Top)",
+      "description": "Rover temperature sensor 7, mounted at the top of the battery.",
+      "unit": "deg C",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for R7: Battery (Top). Units: deg C.",
+        "eng_value": "Engineering value for R7: Battery (Top). Units: deg C. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Lander/temperature0",
+      "display_name": "L0: Enclosure by burn wire",
+      "description": "IM-2 lander temperature sensor 0, located on the YAOKI enclosure near the burn wire.",
+      "unit": "deg C",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for L0: Enclosure by burn wire. Units: deg C.",
+        "eng_value": "Engineering value for L0: Enclosure by burn wire. Units: deg C. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Lander/temperature1",
+      "display_name": "L1: Enclosure by mounting bracket",
+      "description": "IM-2 lander temperature sensor 1, located on the YAOKI enclosure near the mounting bracket.",
+      "unit": "deg C",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for L1: Enclosure by mounting bracket. Units: deg C.",
+        "eng_value": "Engineering value for L1: Enclosure by mounting bracket. Units: deg C. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/last_rssi",
+      "display_name": "Last RSSI",
+      "description": "Last received RSSI value from the lander-rover UHF radio link.",
+      "unit": "dBm",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for Last RSSI. Units: dBm.",
+        "eng_value": "Engineering value for Last RSSI. Units: dBm. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/Rx_cnt",
+      "display_name": "Valid command receive count",
+      "description": "Rover counter for valid commands received. Pings are not commands. The counter runs from 0 to 98 and then resets to 0.",
+      "unit": "count",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for Valid command receive count. Units: count.",
+        "eng_value": "Engineering value for Valid command receive count. Units: count. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/RxError_cnt",
+      "display_name": "Command receive error count",
+      "description": "Rover counter for erroneous received commands that were not processed. The counter runs from 0 to 98 and then resets to 0.",
+      "unit": "count",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for Command receive error count. Units: count.",
+        "eng_value": "Engineering value for Command receive error count. Units: count. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/Tx_cnt",
+      "display_name": "Telemetry transmit count",
+      "description": "Rover counter for sent telemetry packet sets. It increments once per telemetry send allocation, roughly every 30 seconds, and resets after 98.",
+      "unit": "count",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for Telemetry transmit count. Units: count.",
+        "eng_value": "Engineering value for Telemetry transmit count. Units: count. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/CamSend_num",
+      "display_name": "Current image number",
+      "description": "Current image number being captured or sent by the rover camera.",
+      "unit": "image number",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for Current image number. Units: image number.",
+        "eng_value": "Engineering value for Current image number. Units: image number. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/CamSent_cnt",
+      "display_name": "Images sent count",
+      "description": "Rover counter that increments by one for every 960 camera packets sent, corresponding to one camera image. It resets after 99.",
+      "unit": "count",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for Images sent count. Units: count.",
+        "eng_value": "Engineering value for Images sent count. Units: count. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/last_packet_num",
+      "display_name": "Last packet number",
+      "description": "Last packet number received for the current rover camera image.",
+      "unit": "packet number",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for Last packet number. Units: packet number.",
+        "eng_value": "Engineering value for Last packet number. Units: packet number. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/missing_packet_cnt",
+      "display_name": "Missing packet count",
+      "description": "Number of missing packets for the current rover camera image.",
+      "unit": "count",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for Missing packet count. Units: count.",
+        "eng_value": "Engineering value for Missing packet count. Units: count. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "YAOKI/Xr",
+      "display_name": "Raw accelerometer X",
+      "description": "Raw X-axis accelerometer reading directly read from the I2C bus without scaling or casting.",
+      "unit": "raw counts",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for Raw accelerometer X. Units: raw counts.",
+        "eng_value": "Engineering value for Raw accelerometer X. Units: raw counts. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "YAOKI/x",
+      "display_name": "Scaled accelerometer x",
+      "description": "Scaled X-axis accelerometer reading cast to floating point.",
+      "unit": "scaled accelerometer value",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for Scaled accelerometer x. Units: scaled accelerometer value.",
+        "eng_value": "Engineering value for Scaled accelerometer x. Units: scaled accelerometer value. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "YAOKI/Yr",
+      "display_name": "Raw accelerometer Y",
+      "description": "Raw Y-axis accelerometer reading directly read from the I2C bus without scaling or casting.",
+      "unit": "raw counts",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for Raw accelerometer Y. Units: raw counts.",
+        "eng_value": "Engineering value for Raw accelerometer Y. Units: raw counts. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "YAOKI/y",
+      "display_name": "Scaled accelerometer y",
+      "description": "Scaled Y-axis accelerometer reading cast to floating point.",
+      "unit": "scaled accelerometer value",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for Scaled accelerometer y. Units: scaled accelerometer value.",
+        "eng_value": "Engineering value for Scaled accelerometer y. Units: scaled accelerometer value. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "YAOKI/Zr",
+      "display_name": "Raw accelerometer Z",
+      "description": "Raw Z-axis accelerometer reading directly read from the I2C bus without scaling or casting.",
+      "unit": "raw counts",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for Raw accelerometer Z. Units: raw counts.",
+        "eng_value": "Engineering value for Raw accelerometer Z. Units: raw counts. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    },
+    {
+      "name": "YAOKI/z",
+      "display_name": "Scaled accelerometer z",
+      "description": "Scaled Z-axis accelerometer reading cast to floating point.",
+      "unit": "scaled accelerometer value",
+      "fields": {
+        "generation_time": "UTC timestamp assigned when this telemetry sample was generated.",
+        "acquisition_time": "UTC timestamp when the sample was acquired, when available in the source data.",
+        "raw_value": "Raw telemetry value for Scaled accelerometer z. Units: scaled accelerometer value.",
+        "eng_value": "Engineering value for Scaled accelerometer z. Units: scaled accelerometer value. For these exported YAOKI streams this is normally identical to raw_value unless the source archive supplied a calibrated value."
+      }
+    }
+  ],
+  "status_streams": [
+    {
+      "name": "/YAOKI/Rover/Status_BAT",
+      "display_name": "Battery on status",
+      "description": "Binary rover status bit indicating whether rover battery power is on.",
+      "fields": {
+        "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
+        "start": "UTC start timestamp for the interval where the status held this value.",
+        "stop": "UTC stop timestamp for the interval where the status held this value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/VBAT_CHECK",
+      "display_name": "Power source check",
+      "description": "Binary rover power-source status. 0 means lander power; 1 means internal YAOKI battery power.",
+      "fields": {
+        "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
+        "start": "UTC start timestamp for the interval where the status held this value.",
+        "stop": "UTC stop timestamp for the interval where the status held this value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/Status_ICUT",
+      "display_name": "Wire cut in progress",
+      "description": "Binary rover status bit indicating that the deployment wire is currently being cut by the heater relay.",
+      "fields": {
+        "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
+        "start": "UTC start timestamp for the interval where the status held this value.",
+        "stop": "UTC stop timestamp for the interval where the status held this value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/Status_WCUT",
+      "display_name": "Wire cut complete",
+      "description": "Binary rover status bit indicating that the wire-cut command was sent and the allocated wire-cut heater time elapsed.",
+      "fields": {
+        "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
+        "start": "UTC start timestamp for the interval where the status held this value.",
+        "stop": "UTC stop timestamp for the interval where the status held this value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/Status_CAM",
+      "display_name": "Camera active",
+      "description": "Binary rover status bit indicating that the camera is actively taking a picture or sending camera data via CSP.",
+      "fields": {
+        "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
+        "start": "UTC start timestamp for the interval where the status held this value.",
+        "stop": "UTC stop timestamp for the interval where the status held this value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/Status_MOVE",
+      "display_name": "Move active",
+      "description": "Binary rover status bit indicating that the rover should be moving because time remains on the most recent move command.",
+      "fields": {
+        "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
+        "start": "UTC start timestamp for the interval where the status held this value.",
+        "stop": "UTC stop timestamp for the interval where the status held this value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/Status_NORX",
+      "display_name": "No receive timeout",
+      "description": "Binary rover status bit indicating that no pings were received for the configured timeout, approximately 3 minutes.",
+      "fields": {
+        "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
+        "start": "UTC start timestamp for the interval where the status held this value.",
+        "stop": "UTC stop timestamp for the interval where the status held this value."
+      }
+    },
+    {
+      "name": "/YAOKI/Rover/Status_TLM",
+      "display_name": "Telemetry mode",
+      "description": "Binary rover telemetry mode status. 1 means high-frequency telemetry mode; 0 means low-frequency telemetry mode.",
+      "fields": {
+        "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
+        "start": "UTC start timestamp for the interval where the status held this value.",
+        "stop": "UTC stop timestamp for the interval where the status held this value."
+      }
+    }
+  ],
+  "commands": {
+    "source_name": "commands",
+    "description": "Telecommands exported for the mission interval.",
+    "file": "commands.parquet",
+    "fields": {
+      "Generation Time": "UTC timestamp when the command was generated.",
+      "Command Name": "Fully qualified command name.",
+      "Arguments": "Command arguments as exported from the source archive.",
+      "Origin": "Command origin reported by the source archive.",
+      "Sequence Number": "Command sequence number reported by the source archive.",
+      "Username": "User name associated with the command.",
+      "Queue": "Command queue name.",
+      "Binary": "Binary command payload value, when available.",
+      "Acknowledge_Queued": "Queued acknowledgement status.",
+      "Acknowledge_Released": "Released acknowledgement status.",
+      "Acknowledge_Sent": "Sent acknowledgement status.",
+      "Completion": "Command completion status value, when available.",
+      "Return Value": "Command return value, when available."
+    }
+  }
+}
