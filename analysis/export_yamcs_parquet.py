@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import argparse
-import re
 import io
 from datetime import datetime, timezone
 from pathlib import Path
@@ -34,13 +33,8 @@ def load_config(path: Path) -> dict[str, Any]:
     require_keys(config["commands"], ("source_name", "description", "file", "fields"), f"{path}: commands")
     for kind in ("telemetry_streams", "status_streams"):
         for index, stream in enumerate(config[kind]):
-            require_keys(stream, ("name", "display_name", "description", "fields"), f"{path}: {kind}[{index}]")
+            require_keys(stream, ("name", "display_name", "description", "file", "fields"), f"{path}: {kind}[{index}]")
     return config
-
-def stream_filename(stream_name: str) -> str:
-    clean = stream_name.strip("/")
-    clean = re.sub(r"[^A-Za-z0-9._-]+", "__", clean)
-    return f"{clean}.parquet"
 
 def to_utc(value: Any) -> pd.Timestamp:
     if value is None or value is pd.NaT:
@@ -264,7 +258,14 @@ def main() -> None:
     print(f"Exporting telemetry streams to {telemetry_dir}")
     for stream in config["telemetry_streams"]:
         stream_name = stream["name"]
-        output_path = telemetry_dir / stream_filename(stream_name)
+        filename = stream["file"]
+        if filename.startswith("TODO:"):
+            raise ValueError(
+                f"Stream {stream_name!r} has an unresolved filename conflict.\n"
+                f"Edit the 'file:' key in the config to a unique filename.\n"
+                f"Hint: {filename}"
+            )
+        output_path = telemetry_dir / filename
         count = export_telemetry_stream(
             archive,
             stream,
@@ -282,7 +283,14 @@ def main() -> None:
     print(f"Exporting status streams to {status_dir}")
     for stream in config["status_streams"]:
         stream_name = stream["name"]
-        output_path = status_dir / stream_filename(stream_name)
+        filename = stream["file"]
+        if filename.startswith("TODO:"):
+            raise ValueError(
+                f"Stream {stream_name!r} has an unresolved filename conflict.\n"
+                f"Edit the 'file:' key in the config to a unique filename.\n"
+                f"Hint: {filename}"
+            )
+        output_path = status_dir / filename
         count = export_status_stream(
             archive,
             stream,
