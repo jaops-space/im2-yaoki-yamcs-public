@@ -16,13 +16,11 @@ RUN python3 -m venv /opt/venv \
         --display-name "Python (YAOKI)" \
         --sys-prefix
 
-RUN ./data/setup_yamcs_data.sh
-
 RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8090 8888
 
-CMD bash -lc 'cd /yaoki/yamcs-server && mvn yamcs:run & \
+CMD bash -lc './data/setup_yamcs_data.sh && cd /yaoki/yamcs-server && mvn yamcs:run & \
     /opt/venv/bin/jupyter lab \
       --ip=0.0.0.0 \
       --port=8888 \
