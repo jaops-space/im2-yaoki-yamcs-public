@@ -3,9 +3,8 @@
 
 Queries a running YAMCS server for every parameter under /YAOKI/Lander/* and
 /YAOKI/Rover/* and emits a YAML in the shape expected by export_yamcs_parquet.py,
-using exact strings taken from the MDB. The defaults, status_streams, and commands
-sections are hardcoded constants below; only telemetry_streams is derived from the
-server.
+using exact strings taken from the MDB. The defaults and commands sections are
+hardcoded constants below; only telemetry_streams is derived from the server.
 """
 from __future__ import annotations
 
@@ -31,7 +30,6 @@ DEFAULTS = {
     "output_dir": "yaoki_parquet",
     "start": "2025-02-27T00:16:30+00:00",
     "stop": "2025-03-07T05:42:56.476+00:00",
-    "range_min_gap": 300.0,
 }
 
 NAMESPACES = ["/YAOKI/Lander", "/YAOKI/Rover"]
@@ -42,89 +40,6 @@ GENERATION_TIME_DESC = (
 ACQUISITION_TIME_DESC = (
     "UTC timestamp when the sample was acquired, when available in the source data."
 )
-
-STATUS_STREAMS = [
-    {
-        "name": "/YAOKI/Rover/Status_BAT",
-        "display_name": "Battery on status",
-        "description": "Binary rover status bit indicating whether rover battery power is on.",
-        "fields": {
-            "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
-            "start": "UTC start timestamp for the interval where the status held this value.",
-            "stop": "UTC stop timestamp for the interval where the status held this value.",
-        },
-    },
-    {
-        "name": "/YAOKI/Rover/VBAT_CHECK",
-        "display_name": "Power source check",
-        "description": "Binary rover power-source status. 0 means lander power; 1 means internal YAOKI battery power.",
-        "fields": {
-            "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
-            "start": "UTC start timestamp for the interval where the status held this value.",
-            "stop": "UTC stop timestamp for the interval where the status held this value.",
-        },
-    },
-    {
-        "name": "/YAOKI/Rover/Status_ICUT",
-        "display_name": "Wire cut in progress",
-        "description": "Binary rover status bit indicating that the deployment wire is currently being cut by the heater relay.",
-        "fields": {
-            "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
-            "start": "UTC start timestamp for the interval where the status held this value.",
-            "stop": "UTC stop timestamp for the interval where the status held this value.",
-        },
-    },
-    {
-        "name": "/YAOKI/Rover/Status_WCUT",
-        "display_name": "Wire cut complete",
-        "description": "Binary rover status bit indicating that the wire-cut command was sent and the allocated wire-cut heater time elapsed.",
-        "fields": {
-            "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
-            "start": "UTC start timestamp for the interval where the status held this value.",
-            "stop": "UTC stop timestamp for the interval where the status held this value.",
-        },
-    },
-    {
-        "name": "/YAOKI/Rover/Status_CAM",
-        "display_name": "Camera active",
-        "description": "Binary rover status bit indicating that the camera is actively taking a picture or sending camera data via CSP.",
-        "fields": {
-            "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
-            "start": "UTC start timestamp for the interval where the status held this value.",
-            "stop": "UTC stop timestamp for the interval where the status held this value.",
-        },
-    },
-    {
-        "name": "/YAOKI/Rover/Status_MOVE",
-        "display_name": "Move active",
-        "description": "Binary rover status bit indicating that the rover should be moving because time remains on the most recent move command.",
-        "fields": {
-            "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
-            "start": "UTC start timestamp for the interval where the status held this value.",
-            "stop": "UTC stop timestamp for the interval where the status held this value.",
-        },
-    },
-    {
-        "name": "/YAOKI/Rover/Status_NORX",
-        "display_name": "No receive timeout",
-        "description": "Binary rover status bit indicating that no pings were received for the configured timeout, approximately 3 minutes.",
-        "fields": {
-            "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
-            "start": "UTC start timestamp for the interval where the status held this value.",
-            "stop": "UTC stop timestamp for the interval where the status held this value.",
-        },
-    },
-    {
-        "name": "/YAOKI/Rover/Status_TLM",
-        "display_name": "Telemetry mode",
-        "description": "Binary rover telemetry mode status. 1 means high-frequency telemetry mode; 0 means low-frequency telemetry mode.",
-        "fields": {
-            "status": "Decoded binary status value for this interval. 0 means off or false; 1 means on or true.",
-            "start": "UTC start timestamp for the interval where the status held this value.",
-            "stop": "UTC stop timestamp for the interval where the status held this value.",
-        },
-    },
-]
 
 COMMANDS_BLOCK = {
     "source_name": "commands",
@@ -268,20 +183,13 @@ def main() -> None:
     client = YamcsClient(args.url)
     mdb = client.get_mdb(instance=args.instance)
     telemetry_streams = build_telemetry_streams(mdb, namespaces)
-    status_streams = [
-        {**stream, "file": stream_filename(stream["name"])}
-        for stream in STATUS_STREAMS
-    ]
 
     for w in annotate_filename_conflicts(telemetry_streams):
-        print(f"WARNING: {w}")
-    for w in annotate_filename_conflicts(status_streams):
         print(f"WARNING: {w}")
 
     document = {
         "defaults": dict(DEFAULTS),
         "telemetry_streams": telemetry_streams,
-        "status_streams": status_streams,
         "commands": COMMANDS_BLOCK,
     }
 

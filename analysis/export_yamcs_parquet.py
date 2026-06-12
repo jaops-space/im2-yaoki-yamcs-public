@@ -22,18 +22,17 @@ def load_config(path: Path) -> dict[str, Any]:
     config = yaml.safe_load(path.read_text(encoding="utf-8"))
     require_keys(
         config,
-        ("defaults", "telemetry_streams", "status_streams", "commands"),
+        ("defaults", "telemetry_streams", "commands"),
         str(path),
     )
     require_keys(
         config["defaults"],
-        ("url", "instance", "output_dir", "start", "stop", "range_min_gap"),
+        ("url", "instance", "output_dir", "start", "stop"),
         f"{path}: defaults",
     )
     require_keys(config["commands"], ("source_name", "description", "file", "fields"), f"{path}: commands")
-    for kind in ("telemetry_streams", "status_streams"):
-        for index, stream in enumerate(config[kind]):
-            require_keys(stream, ("name", "display_name", "description", "file", "fields"), f"{path}: {kind}[{index}]")
+    for index, stream in enumerate(config["telemetry_streams"]):
+        require_keys(stream, ("name", "display_name", "description", "file", "fields"), f"{path}: telemetry_streams[{index}]")
     return config
 
 def to_utc(value: Any) -> pd.Timestamp:
@@ -152,39 +151,6 @@ def export_telemetry_stream(
     return len(df)
 
 
-def export_status_stream(
-    archive: Any,
-    stream: dict[str, Any],
-    output_path: Path,
-    start: datetime,
-    stop: datetime,
-    min_gap: float,
-) -> int:
-    stream_name = stream["name"]
-    rows = []
-    for prange in archive.list_parameter_ranges(stream_name, start=start, stop=stop, min_gap=min_gap):
-        rows.append(
-            {
-                "status": scalar_value(getattr(prange, "eng_value", None)),
-                "start": to_utc(getattr(prange, "start", None)),
-                "stop": to_utc(getattr(prange, "stop", None)),
-            }
-        )
-
-    df = pd.DataFrame(rows, columns=["status", "start", "stop"])
-    df.to_parquet(output_path, index=False)
-    write_metadata(
-        df,
-        output_path,
-        kind="status",
-        source_name=stream_name,
-        description=stream["description"],
-        field_descriptions=stream["fields"],
-        display_name=stream["display_name"],
-    )
-    return len(df)
-
-
 def export_commands(
     archive: Any,
     output_path: Path,
@@ -225,21 +191,14 @@ def main() -> None:
     parser.add_argument("--output-dir", default=defaults["output_dir"], type=Path, help="Directory for parquet output")
     parser.add_argument("--start", default=defaults["start"], help="Export start timestamp")
     parser.add_argument("--stop", default=defaults["stop"], help="Export stop timestamp")
-    parser.add_argument(
-        "--range-min-gap",
-        default=defaults["range_min_gap"],
-        type=float,
-        help="min_gap for status range exports",
-    )
     args = parser.parse_args()
 
     start = datetime.fromisoformat(args.start)
     stop = datetime.fromisoformat(args.stop)
 
     telemetry_dir = args.output_dir / "telemetry"
-    status_dir = args.output_dir / "status"
     command_dir = args.output_dir / "commands"
-    for directory in (telemetry_dir, status_dir, command_dir):
+    for directory in (telemetry_dir, command_dir):
         directory.mkdir(parents=True, exist_ok=True)
 
     client = YamcsClient(args.url)
@@ -251,7 +210,6 @@ def main() -> None:
         "start": start.astimezone(timezone.utc).isoformat(),
         "stop": stop.astimezone(timezone.utc).isoformat(),
         "telemetry_streams": {},
-        "status_streams": {},
         "commands": {},
     }
 
@@ -274,32 +232,6 @@ def main() -> None:
             stop,
         )
         manifest["telemetry_streams"][stream_name] = {
-            "file": str(output_path.relative_to(args.output_dir)),
-            "metadata": str(output_path.with_suffix(".metadata.yaml").relative_to(args.output_dir)),
-            "rows": count,
-        }
-        print(f"  {stream_name}: {count} rows")
-
-    print(f"Exporting status streams to {status_dir}")
-    for stream in config["status_streams"]:
-        stream_name = stream["name"]
-        filename = stream["file"]
-        if filename.startswith("TODO:"):
-            raise ValueError(
-                f"Stream {stream_name!r} has an unresolved filename conflict.\n"
-                f"Edit the 'file:' key in the config to a unique filename.\n"
-                f"Hint: {filename}"
-            )
-        output_path = status_dir / filename
-        count = export_status_stream(
-            archive,
-            stream,
-            output_path,
-            start,
-            stop,
-            args.range_min_gap,
-        )
-        manifest["status_streams"][stream_name] = {
             "file": str(output_path.relative_to(args.output_dir)),
             "metadata": str(output_path.with_suffix(".metadata.yaml").relative_to(args.output_dir)),
             "rows": count,
