@@ -6,10 +6,140 @@ defaults:
   stop: '2025-03-07T05:42:56.476+00:00'
   range_min_gap: 300.0
 telemetry_streams:
+- name: /YAOKI/Lander/rover_status
+  display_name: 'YAOKI rover status'
+  description: IM-2 lander temperature sensor located on the enclosure by the mounting bracket.
+  unit: unitless
+  type: enumeration
+  fields:
+    generation_time: UTC timestamp assigned when this telemetry sample was generated.
+    acquisition_time: UTC timestamp when the sample was acquired, when available in
+      the source data.
+    raw_value: '0=OFF, 1=ON, other=UNDEF'
+    eng_value: 'Engineering value for YAOKI rover status. Units: enum. For these exported YAOKI streams this is normally identical to raw_value'
+- name: /YAOKI/Lander/rover_voltage
+  display_name: 'YAOKI rover voltage'
+  description: Raw ADC counts of measured voltage.
+  unit: ADC voltage
+  type: float
+  fields:
+    generation_time: UTC timestamp assigned when this telemetry sample was generated.
+    acquisition_time: UTC timestamp when the sample was acquired, when available in
+      the source data.
+    raw_value: 'ADC value for YAOKI rover voltage. Units: ADC voltage.'
+    eng_value: 'Engineering value for YAOKI rover voltage. Units: ADC voltage. For these exported YAOKI streams this is normally identical to raw_value'
+- name: /YAOKI/Lander/temperature0
+  display_name: 'L0: Enclosure by burn wire'
+  description: IM-2 lander temperature sensor located on the enclosure of the YAOKI burn wire deployment mechanism.
+  unit: deg C
+  type: float
+  fields:
+    generation_time: UTC timestamp assigned when this telemetry sample was generated.
+    acquisition_time: UTC timestamp when the sample was acquired, when available in
+      the source data.
+    raw_value: 'Raw telemetry value for L0: Enclosure by burn wire. Units: deg C.'
+    eng_value: 'Engineering value for L0: Enclosure by burn wire. Units: deg C. For
+      these exported YAOKI streams this is normally identical to raw_value unless
+      the source archive supplied a calibrated value.'
+- name: /YAOKI/Lander/temperature1
+  display_name: 'L1: Enclosure by mounting bracket'
+  description: IM-2 lander temperature sensor located on the enclosure by the mounting bracket.
+  unit: deg C
+  type: float
+  fields:
+    generation_time: UTC timestamp assigned when this telemetry sample was generated.
+    acquisition_time: UTC timestamp when the sample was acquired, when available in
+      the source data.
+    raw_value: 'Raw telemetry value for L1: Enclosure by mounting bracket. Units:
+      deg C.'
+    eng_value: 'Engineering value for L1: Enclosure by mounting bracket. Units: deg
+      C. For these exported YAOKI streams this is normally identical to raw_value
+      unless the source archive supplied a calibrated value.'
+- name: YAOKI/Rover/Accelerometer_X
+  display_name: Raw accelerometer X
+  description: Raw X-axis accelerometer reading.
+  unit: arbitrary
+  type: integer
+  fields:
+    generation_time: UTC timestamp assigned when this telemetry sample was generated.
+    acquisition_time: UTC timestamp when the sample was acquired, when available in
+      the source data.
+    raw_value: 'Raw telemetry value for Raw accelerometer X. Units: arbitrary.'
+    eng_value: 'Engineering value for Raw accelerometer X. Units: arbitrary. For
+      these exported YAOKI streams this is normally identical to raw_value unless
+      the source archive supplied a calibrated value.'
+- name: YAOKI/Rover/accelerometer_x
+  display_name: Scaled accelerometer x
+  description: Scaled X-axis accelerometer reading cast to floating point.
+  unit: arbitrary
+  type: float
+  fields:
+    generation_time: UTC timestamp assigned when this telemetry sample was generated.
+    acquisition_time: UTC timestamp when the sample was acquired, when available in
+      the source data.
+    raw_value: 'Raw telemetry value for Scaled accelerometer x. Units: arbitrary.'
+    eng_value: 'Engineering value for Scaled accelerometer x. Units: arbitrary. For
+      these exported YAOKI streams this is normally identical to raw_value
+      unless the source archive supplied a calibrated value.'
+- name: YAOKI/Rover/Accelerometer_Y
+  display_name: Raw accelerometer Y
+  description: Raw Y-axis accelerometer reading.
+  unit: arbitrary
+  type: integer
+  fields:
+    generation_time: UTC timestamp assigned when this telemetry sample was generated.
+    acquisition_time: UTC timestamp when the sample was acquired, when available in
+      the source data.
+    raw_value: 'Raw telemetry value for Raw accelerometer Y. Units: arbitrary.'
+    eng_value: 'Engineering value for Raw accelerometer Y. Units: arbitrary. For
+      these exported YAOKI streams this is normally identical to raw_value unless
+      the source archive supplied a calibrated value.'
+- name: YAOKI/Rover/accelerometer_y
+  display_name: Scaled accelerometer y
+  description: Scaled Y-axis accelerometer reading cast to floating point.
+  unit: arbitrary
+  type: float
+  fields:
+    generation_time: UTC timestamp assigned when this telemetry sample was generated.
+    acquisition_time: UTC timestamp when the sample was acquired, when available in
+      the source data.
+    raw_value: 'Raw telemetry value for Scaled accelerometer y. Units: arbitrary.'
+    eng_value: 'Engineering value for Scaled accelerometer y. Units: arbitrary. For
+      these exported YAOKI streams this is normally identical to raw_value
+      unless the source archive supplied a calibrated value.'
+- name: YAOKI/Rover/Accelerometer_Z
+  display_name: Raw accelerometer Z
+  description: >
+    Raw Z-axis accelerometer reading directly read from the I2C bus without scaling 
+    or casting.
+  unit: arbitrary
+  type: integer
+  fields:
+    generation_time: UTC timestamp assigned when this telemetry sample was generated.
+    acquisition_time: UTC timestamp when the sample was acquired, when available in
+      the source data.
+    raw_value: 'Raw telemetry value for Raw accelerometer Z. Units: arbitrary.'
+    eng_value: 'Engineering value for Raw accelerometer Z. Units: arbitrary. For
+      these exported YAOKI streams this is normally identical to raw_value unless
+      the source archive supplied a calibrated value.'
+- name: YAOKI/Rover/accelerometer_z
+  display_name: Scaled accelerometer z
+  description: Scaled Z-axis accelerometer reading cast to floating point.
+  unit: arbitrary
+  type: float
+  fields:
+    generation_time: UTC timestamp assigned when this telemetry sample was generated.
+    acquisition_time: UTC timestamp when the sample was acquired, when available in
+      the source data.
+    raw_value: 'Raw telemetry value for Scaled accelerometer z. Units: arbitrary.'
+    eng_value: 'Engineering value for Scaled accelerometer z. Units: arbitrary. For
+      these exported YAOKI streams this is normally identical to raw_value
+      unless the source archive supplied a calibrated value.'
 - name: /YAOKI/Rover/ADC_TEMP0
   display_name: 'R0: Body (Bottom)'
   description: Rover temperature sensor 0, mounted on the bottom of the rover body.
   unit: deg C
+  type: float
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
@@ -20,9 +150,9 @@ telemetry_streams:
       supplied a calibrated value.'
 - name: /YAOKI/Rover/ADC_TEMP1
   display_name: 'R1: Motor board (middleboard)'
-  description: Rover temperature sensor 1, mounted on the motor board on the middle
-    board stack.
+  description: Rover temperature sensor 1, mounted on the middleboard.
   unit: deg C
+  type: float
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
@@ -36,6 +166,7 @@ telemetry_streams:
   display_name: 'R2: UHF radio'
   description: Rover temperature sensor 2, mounted at the UHF radio.
   unit: deg C
+  type: float
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
@@ -48,6 +179,7 @@ telemetry_streams:
   display_name: 'R3: Body (Top)'
   description: Rover temperature sensor 3, mounted on the top of the rover body.
   unit: deg C
+  type: float
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
@@ -58,8 +190,9 @@ telemetry_streams:
       supplied a calibrated value.'
 - name: /YAOKI/Rover/ADC_TEMP4
   display_name: 'R4: On CPU (Middle)'
-  description: Rover temperature sensor 4, mounted near the CPU on the middle board.
+  description: Rover temperature sensor 4, mounted near the CPU.
   unit: deg C
+  type: float
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
@@ -70,9 +203,11 @@ telemetry_streams:
       archive supplied a calibrated value.'
 - name: /YAOKI/Rover/ADC_TEMP5
   display_name: 'R5: Temperature data not sent'
-  description: Rover temperature sensor 5. No samples are present in this exported
+  description: >-
+    Rover temperature sensor 5. No samples are present in this exported
     dataset because this temperature channel was not sent in telemetry.
   unit: deg C
+  type: float
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
@@ -86,6 +221,7 @@ telemetry_streams:
   display_name: 'R6: Battery (Bottom)'
   description: Rover temperature sensor 6, mounted at the bottom of the battery.
   unit: deg C
+  type: float
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
@@ -98,6 +234,7 @@ telemetry_streams:
   display_name: 'R7: Battery (Top)'
   description: Rover temperature sensor 7, mounted at the top of the battery.
   unit: deg C
+  type: float
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
@@ -106,88 +243,11 @@ telemetry_streams:
     eng_value: 'Engineering value for R7: Battery (Top). Units: deg C. For these exported
       YAOKI streams this is normally identical to raw_value unless the source archive
       supplied a calibrated value.'
-- name: /YAOKI/Lander/temperature0
-  display_name: 'L0: Enclosure by burn wire'
-  description: IM-2 lander temperature sensor 0, located on the YAOKI enclosure near
-    the burn wire.
-  unit: deg C
-  fields:
-    generation_time: UTC timestamp assigned when this telemetry sample was generated.
-    acquisition_time: UTC timestamp when the sample was acquired, when available in
-      the source data.
-    raw_value: 'Raw telemetry value for L0: Enclosure by burn wire. Units: deg C.'
-    eng_value: 'Engineering value for L0: Enclosure by burn wire. Units: deg C. For
-      these exported YAOKI streams this is normally identical to raw_value unless
-      the source archive supplied a calibrated value.'
-- name: /YAOKI/Lander/temperature1
-  display_name: 'L1: Enclosure by mounting bracket'
-  description: IM-2 lander temperature sensor 1, located on the YAOKI enclosure near
-    the mounting bracket.
-  unit: deg C
-  fields:
-    generation_time: UTC timestamp assigned when this telemetry sample was generated.
-    acquisition_time: UTC timestamp when the sample was acquired, when available in
-      the source data.
-    raw_value: 'Raw telemetry value for L1: Enclosure by mounting bracket. Units:
-      deg C.'
-    eng_value: 'Engineering value for L1: Enclosure by mounting bracket. Units: deg
-      C. For these exported YAOKI streams this is normally identical to raw_value
-      unless the source archive supplied a calibrated value.'
-- name: /YAOKI/Rover/last_rssi
-  display_name: Last RSSI
-  description: Last received RSSI value from the lander-rover UHF radio link.
-  unit: dBm
-  fields:
-    generation_time: UTC timestamp assigned when this telemetry sample was generated.
-    acquisition_time: UTC timestamp when the sample was acquired, when available in
-      the source data.
-    raw_value: 'Raw telemetry value for Last RSSI. Units: dBm.'
-    eng_value: 'Engineering value for Last RSSI. Units: dBm. For these exported YAOKI
-      streams this is normally identical to raw_value unless the source archive supplied
-      a calibrated value.'
-- name: /YAOKI/Rover/Rx_cnt
-  display_name: Valid command receive count
-  description: Rover counter for valid commands received. Pings are not commands.
-    The counter runs from 0 to 98 and then resets to 0.
-  unit: count
-  fields:
-    generation_time: UTC timestamp assigned when this telemetry sample was generated.
-    acquisition_time: UTC timestamp when the sample was acquired, when available in
-      the source data.
-    raw_value: 'Raw telemetry value for Valid command receive count. Units: count.'
-    eng_value: 'Engineering value for Valid command receive count. Units: count. For
-      these exported YAOKI streams this is normally identical to raw_value unless
-      the source archive supplied a calibrated value.'
-- name: /YAOKI/Rover/RxError_cnt
-  display_name: Command receive error count
-  description: Rover counter for erroneous received commands that were not processed.
-    The counter runs from 0 to 98 and then resets to 0.
-  unit: count
-  fields:
-    generation_time: UTC timestamp assigned when this telemetry sample was generated.
-    acquisition_time: UTC timestamp when the sample was acquired, when available in
-      the source data.
-    raw_value: 'Raw telemetry value for Command receive error count. Units: count.'
-    eng_value: 'Engineering value for Command receive error count. Units: count. For
-      these exported YAOKI streams this is normally identical to raw_value unless
-      the source archive supplied a calibrated value.'
-- name: /YAOKI/Rover/Tx_cnt
-  display_name: Telemetry transmit count
-  description: Rover counter for sent telemetry packet sets. It increments once per
-    telemetry send allocation, roughly every 30 seconds, and resets after 98.
-  unit: count
-  fields:
-    generation_time: UTC timestamp assigned when this telemetry sample was generated.
-    acquisition_time: UTC timestamp when the sample was acquired, when available in
-      the source data.
-    raw_value: 'Raw telemetry value for Telemetry transmit count. Units: count.'
-    eng_value: 'Engineering value for Telemetry transmit count. Units: count. For
-      these exported YAOKI streams this is normally identical to raw_value unless
-      the source archive supplied a calibrated value.'
 - name: /YAOKI/Rover/CamSend_num
   display_name: Current image number
-  description: Current image number being captured or sent by the rover camera.
+  description: Current image number.
   unit: image number
+  type: integer
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
@@ -198,9 +258,13 @@ telemetry_streams:
       the source archive supplied a calibrated value.'
 - name: /YAOKI/Rover/CamSent_cnt
   display_name: Images sent count
-  description: Rover counter that increments by one for every 960 camera packets sent,
-    corresponding to one camera image. It resets after 99.
+  description: |
+    Simple counter that increments by 1 for every 960 camera packet sent (corresponds to each camera image).
+    This same counter is used in the CSP header of the camera packets.
+    Min value: 0
+    Max value: 99 (then resets to 0)
   unit: count
+  type: integer
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
@@ -211,8 +275,9 @@ telemetry_streams:
       supplied a calibrated value.'
 - name: /YAOKI/Rover/last_packet_num
   display_name: Last packet number
-  description: Last packet number received for the current rover camera image.
+  description: Last packet number of the current image.
   unit: packet number
+  type: integer
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
@@ -221,10 +286,24 @@ telemetry_streams:
     eng_value: 'Engineering value for Last packet number. Units: packet number. For
       these exported YAOKI streams this is normally identical to raw_value unless
       the source archive supplied a calibrated value.'
+- name: /YAOKI/Rover/last_rssi
+  display_name: Last RSSI
+  description: Last received RSSI value from the lander-rover UHF radio link.
+  unit: dBm
+  type: integer
+  fields:
+    generation_time: UTC timestamp assigned when this telemetry sample was generated.
+    acquisition_time: UTC timestamp when the sample was acquired, when available in
+      the source data.
+    raw_value: 'Raw telemetry value for Last RSSI. Units: dBm.'
+    eng_value: 'Engineering value for Last RSSI. Units: dBm. For these exported YAOKI
+      streams this is normally identical to raw_value unless the source archive supplied
+      a calibrated value.'
 - name: /YAOKI/Rover/missing_packet_cnt
   display_name: Missing packet count
-  description: Number of missing packets for the current rover camera image.
+  description: Number of missing packets for the current image.
   unit: count
+  type: integer
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
@@ -233,84 +312,166 @@ telemetry_streams:
     eng_value: 'Engineering value for Missing packet count. Units: count. For these
       exported YAOKI streams this is normally identical to raw_value unless the source
       archive supplied a calibrated value.'
-- name: YAOKI/Xr
-  display_name: Raw accelerometer X
-  description: Raw X-axis accelerometer reading directly read from the I2C bus without
-    scaling or casting.
-  unit: raw counts
+- name: /YAOKI/Rover/Rx_cnt
+  display_name: Number of valid commands received
+  description: |
+    Simple counter that increments for each valid command received
+    Commands are considered valid if more than 5 key/value pairs in the JSON string. The nominal number is 7.
+    Note: if the command has between 1 and 5 key/value pairs, the command is still processed (!) but Rx_cnt is not incremented (!!)
+    Note: pings are not commands.
+    Min value: 0
+    Max value: 98 (then resets to 0)
+  unit: count
+  type: integer
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
       the source data.
-    raw_value: 'Raw telemetry value for Raw accelerometer X. Units: raw counts.'
-    eng_value: 'Engineering value for Raw accelerometer X. Units: raw counts. For
+    raw_value: 'Raw telemetry value for Valid command receive count. Units: count.'
+    eng_value: 'Engineering value for Valid command receive count. Units: count. For
       these exported YAOKI streams this is normally identical to raw_value unless
       the source archive supplied a calibrated value.'
-- name: YAOKI/x
-  display_name: Scaled accelerometer x
-  description: Scaled X-axis accelerometer reading cast to floating point.
-  unit: scaled accelerometer value
+- name: /YAOKI/Rover/RxError_cnt
+  display_name: Number of error commands received
+  description: |
+    Simple counter that increments for each command received that is considered eroneous (and therefore not processed).
+    The error criteria is if the command has zero key/value pairs in the JSON string.
+    Min value: 0
+    Max value: 98 (then resets to 0)
+  unit: count
+  type: integer
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
       the source data.
-    raw_value: 'Raw telemetry value for Scaled accelerometer x. Units: scaled accelerometer
-      value.'
-    eng_value: 'Engineering value for Scaled accelerometer x. Units: scaled accelerometer
-      value. For these exported YAOKI streams this is normally identical to raw_value
-      unless the source archive supplied a calibrated value.'
-- name: YAOKI/Yr
-  display_name: Raw accelerometer Y
-  description: Raw Y-axis accelerometer reading directly read from the I2C bus without
-    scaling or casting.
-  unit: raw counts
-  fields:
-    generation_time: UTC timestamp assigned when this telemetry sample was generated.
-    acquisition_time: UTC timestamp when the sample was acquired, when available in
-      the source data.
-    raw_value: 'Raw telemetry value for Raw accelerometer Y. Units: raw counts.'
-    eng_value: 'Engineering value for Raw accelerometer Y. Units: raw counts. For
+    raw_value: 'Raw telemetry value for Command receive error count. Units: count.'
+    eng_value: 'Engineering value for Command receive error count. Units: count. For
       these exported YAOKI streams this is normally identical to raw_value unless
       the source archive supplied a calibrated value.'
-- name: YAOKI/y
-  display_name: Scaled accelerometer y
-  description: Scaled Y-axis accelerometer reading cast to floating point.
-  unit: scaled accelerometer value
+- name: /YAOKI/Rover/Status
+  display_name: Raw status. Prefer to use the split status parameters instead 
+  description: Raw status. Prefer to use the split status parameters instead
+  unit: count
+  type: integer
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
       the source data.
-    raw_value: 'Raw telemetry value for Scaled accelerometer y. Units: scaled accelerometer
-      value.'
-    eng_value: 'Engineering value for Scaled accelerometer y. Units: scaled accelerometer
-      value. For these exported YAOKI streams this is normally identical to raw_value
-      unless the source archive supplied a calibrated value.'
-- name: YAOKI/Zr
-  display_name: Raw accelerometer Z
-  description: Raw Z-axis accelerometer reading directly read from the I2C bus without
-    scaling or casting.
-  unit: raw counts
-  fields:
-    generation_time: UTC timestamp assigned when this telemetry sample was generated.
-    acquisition_time: UTC timestamp when the sample was acquired, when available in
-      the source data.
-    raw_value: 'Raw telemetry value for Raw accelerometer Z. Units: raw counts.'
-    eng_value: 'Engineering value for Raw accelerometer Z. Units: raw counts. For
+    raw_value: 'Raw telemetry value for raw status. Units: count.'
+    eng_value: 'Engineering value for raw status. Units: count. For
       these exported YAOKI streams this is normally identical to raw_value unless
       the source archive supplied a calibrated value.'
-- name: YAOKI/z
-  display_name: Scaled accelerometer z
-  description: Scaled Z-axis accelerometer reading cast to floating point.
-  unit: scaled accelerometer value
+- name: /YAOKI/Rover/Status_BAT
+  display_name: Battery on status
+  description: |
+    l.291: Cleared at the start of main.c (before the main while loop) after setting DC_Relay_OFF
+    l.631: Set if command is received with {"bat": "1"}
+    l.635: Cleared if command is received with {"bat": "0"}
+  unit: unitless
+  type: integer
+  fields:
+    status: Battery on status
+    start: UTC start timestamp for the interval where the status held this value.
+    stop: UTC stop timestamp for the interval where the status held this value.
+- name: /YAOKI/Rover/Status_CAM
+  display_name:  The camera is actively taking the picture / sending the data via CSP 
+  description: |
+    l.732: Cleared if the previous loop had isCamData == 1 and the current loop has isCamData == 0
+    l.869: Set if(isCamData == 1) AND if(sent_camera_packet_cnt==0)
+    l.902 and l.905: Cleared if(sent_camera_packet_cnt>=960). Note: at the same time as Camera_ToCPU_End() and isCamData=0;
+  unit: unitless
+  type: integer
+  fields:
+    status: Camera status
+    start: UTC start timestamp for the interval where the status held this value.
+    stop: UTC stop timestamp for the interval where the status held this value.
+- name: /YAOKI/Rover/Status_ICUT
+  display_name:  The deployment wire is currently being cut 
+  description: |
+    Indicates that the wire is being cut by the activation of the Heater Relay for a set number of seconds. 
+    The nominal sequence of this status is cleared -> set (with command {"cut": "1"}) -> cleared (after the set number of seconds)
+    l.718: Cleared if isCut!= 1
+    l.810: Cleared similarly (first case is if isCamData == 1. / Second case is if isCamData == 0)
+    l.836: Set if isCut == 1 and cut_cnt == 0. Note: then blocks to send the high frequency accelerometer data TxGsenData_CutDrop()
+    l.853: Cleared if (cut_cnt > cut_time). Note: then Heater_Relay_OFF() and Sets STATUS_WASCUT
+  unit: unitless
+  type: integer
+  fields:
+    status: ICUT status
+    start: UTC start timestamp for the interval where the status held this value.
+    stop: UTC stop timestamp for the interval where the status held this value.
+- name: /YAOKI/Rover/Status_MOVE
+  display_name:  The rover should be moving (e.g time remains since the last move command set the move timer 
+  description: |
+    l.685: Cleared if isMove != 1. which should mean "and get Stop motor command while moving , or No commands while being stay"
+    l.777: Cleared similarly (first case is if isCamData == 1 / Second case is if isCamData == 0)
+    l.925: Set if isMove==1 AND Move_cnt == 0
+    l.944: Cleared if (Move_cnt > Move_time). Note: at the same time as BLDC_1_OFF() and BLDC_2_OFF()
+  unit: unitless
+  type: integer
+  fields:
+    status: Decoded binary status value for this interval. 0 means off or false; 1
+      means on or true.
+    start: UTC start timestamp for the interval where the status held this value.
+    stop: UTC stop timestamp for the interval where the status held this value.
+- name: /YAOKI/Rover/Status_NORX
+  display_name:  No pings received for 3 minutes 
+  description: |
+    l.415: Set if (NoRx_cnt > NORX_LIMIT) Note: at the same time, the two motors are commanded forward for 30ms. Then the counter resets
+    l.603: Cleared if ping is received.
+    l.626: Cleared if a command is received.
+  unit: unitless
+  type: integer
+  fields:
+    status: No ping status
+    start: UTC start timestamp for the interval where the status held this value.
+    stop: UTC stop timestamp for the interval where the status held this value.
+- name: /YAOKI/Rover/Status_TLM
+  display_name: Raw status telemetry. Prefer to use the split status parameters instead
+  description: Raw status telemetry. Prefer to use the split status parameters instead
+  unit: count
+  type: integer
+  fields:
+    status: Telemetry status
+    start: UTC start timestamp for the interval where the status held this value.
+    stop: UTC stop timestamp for the interval where the status held this value.
+- name: /YAOKI/Rover/Status_WCUT
+  display_name: Wire cut complete
+  description: Binary rover status bit indicating that the wire-cut command was sent
+    and the allocated wire-cut heater time elapsed.
+  fields:
+    status: Decoded binary status value for this interval. 0 means off or false; 1
+      means on or true.
+    start: UTC start timestamp for the interval where the status held this value.
+    stop: UTC stop timestamp for the interval where the status held this value.
+- name: /YAOKI/Rover/Tx_cnt
+  display_name: Number of sent telemetry packet sets
+  description: >
+    Simple counter that increments at each 'Send TLM' time allocation (~30 seconds)
+    (the two telemetry packet sent at the same time are only counted as one)
+    Min value: 0
+    Max value: 98 (then resets to 0)
+  unit: count
+  type: integer
   fields:
     generation_time: UTC timestamp assigned when this telemetry sample was generated.
     acquisition_time: UTC timestamp when the sample was acquired, when available in
       the source data.
-    raw_value: 'Raw telemetry value for Scaled accelerometer z. Units: scaled accelerometer
-      value.'
-    eng_value: 'Engineering value for Scaled accelerometer z. Units: scaled accelerometer
-      value. For these exported YAOKI streams this is normally identical to raw_value
-      unless the source archive supplied a calibrated value.'
+    raw_value: 'Raw telemetry value for Telemetry transmit count. Units: count.'
+    eng_value: 'Engineering value for Telemetry transmit count. Units: count. For
+      these exported YAOKI streams this is normally identical to raw_value unless
+      the source archive supplied a calibrated value.'
+- name: /YAOKI/Rover/VBAT_CHECK
+  display_name: Yaoki power source = 0 if on lander power / 1 if on internal battery power 
+  description: >
+    l.204: boolean that returns 0 if using power from the lander and 1 if using the internal Yaoki battery
+    GPIO measurement that confirms that the command "bat":"1" was successfully executed (DC_Relay_ON())
+  unit: unitless
+  type: integer
+  fields:
+    status: 0 if on lander power / 1 if on internal battery power
+    start: UTC start timestamp for the interval where the status held this value.
+    stop: UTC stop timestamp for the interval where the status held this value.
 status_streams:
 - name: /YAOKI/Rover/Status_BAT
   display_name: Battery on status
