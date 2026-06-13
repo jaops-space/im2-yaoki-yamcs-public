@@ -32,7 +32,7 @@ def load_config(path: Path) -> dict[str, Any]:
     )
     require_keys(config["commands"], ("source_name", "description", "file", "fields"), f"{path}: commands")
     for index, stream in enumerate(config["telemetry_streams"]):
-        require_keys(stream, ("name", "display_name", "description", "file", "fields"), f"{path}: telemetry_streams[{index}]")
+        require_keys(stream, ("name", "display_name", "description", "type", "file", "fields"), f"{path}: telemetry_streams[{index}]")
     return config
 
 def to_utc(value: Any) -> pd.Timestamp:
@@ -74,6 +74,34 @@ def observed_range(series: pd.Series) -> dict[str, Any]:
     elif clean.nunique(dropna=True) <= 20:
         result["values"] = [scalar_value(value) for value in clean.drop_duplicates()]
     return result
+
+
+_DTYPE_CHECKS: dict[str, Any] = {
+    "integer": pd.api.types.is_integer_dtype,
+    "float": pd.api.types.is_float_dtype,
+    "string": pd.api.types.is_string_dtype,
+}
+
+
+def validate_column_dtype(series: pd.Series, declared_type: str, stream_name: str, column: str) -> None:
+    if declared_type == "enumeration":
+        return
+    check = _DTYPE_CHECKS.get(declared_type)
+    if check is None:
+        return
+    if check(series):
+        return
+    # pandas promotes int→float64 when NaN is present; accept a float column whose
+    # non-null values are all whole numbers (17714.0 is fine, 82.297 is not).
+    if declared_type == "integer" and pd.api.types.is_float_dtype(series):
+        non_null = series.dropna()
+        if non_null.empty or (non_null % 1 == 0).all():
+            return
+    raise ValueError(
+        f"Stream {stream_name!r} column {column!r}: "
+        f"declared type {declared_type!r} but got pandas dtype {series.dtype}. "
+        f"Check whether Yamcs is returning the correct parameter (case-sensitive name match?)."
+    )
 
 
 def write_metadata(
@@ -137,6 +165,11 @@ def export_telemetry_stream(
             "eng_value",
         ],
     )
+    declared_type = stream["type"]
+    for col in ("raw_value", "eng_value"):
+        if col in df and not df[col].dropna().empty:
+            validate_column_dtype(df[col], declared_type, stream_name, col)
+
     df.to_parquet(output_path, index=False)
     write_metadata(
         df,

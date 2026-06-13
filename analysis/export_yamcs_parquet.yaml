@@ -360,7 +360,7 @@ telemetry_streams:
     raw_value: 'Raw telemetry value for Temperature sensor 7. Units: unitless.'
     eng_value: 'Engineering value for Temperature sensor 7. Units: unitless. Identical
       to raw_value unless the MDB defines a calibrator.'
-- name: /YAOKI/Rover/Accelerometer_X
+- name: YAOKI/Xr # Note, there is a yamcs bug that resolves Accelerometer_X to accelerometer_x
   display_name: 'Raw accelerometer data: X-axis'
   description: Raw accelerometer data, X-axis, directly read from the i2c bus. no
     casting no scaling meant to be sent at the highest possible frequency
@@ -374,7 +374,7 @@ telemetry_streams:
     raw_value: 'Raw telemetry value for Raw accelerometer data: X-axis. Units: unitless.'
     eng_value: 'Engineering value for Raw accelerometer data: X-axis. Units: unitless.
       Identical to raw_value unless the MDB defines a calibrator.'
-- name: /YAOKI/Rover/Accelerometer_Y
+- name: YAOKI/Yr # Note, there is a yamcs bug that resolves Accelerometer_Y to accelerometer_y
   display_name: 'Raw accelerometer data: Y-axis'
   description: Raw accelerometer data, Y-axis, directly read from the i2c bus. no
     casting no scaling meant to be sent at the highest possible frequency
@@ -388,7 +388,7 @@ telemetry_streams:
     raw_value: 'Raw telemetry value for Raw accelerometer data: Y-axis. Units: unitless.'
     eng_value: 'Engineering value for Raw accelerometer data: Y-axis. Units: unitless.
       Identical to raw_value unless the MDB defines a calibrator.'
-- name: /YAOKI/Rover/Accelerometer_Z
+- name: YAOKI/Zr # Note, there is a yamcs bug that resolves Accelerometer_Z to accelerometer_z
   display_name: 'Raw accelerometer data: Z-axis'
   description: Raw accelerometer data, Z-axis, directly read from the i2c bus. no
     casting no scaling meant to be sent at the highest possible frequency
