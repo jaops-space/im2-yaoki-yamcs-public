@@ -12,7 +12,7 @@ Tags:
   - astronomy
   - lunar
 License: CC-BY-4.0
-Citation: "JAOPS and Dymon Co., Ltd. (2025). Dymon YAOKI Lunar Rover Mission Data (IM-2).  Registry of Open Data on AWS." # TODO verify this citation.
+Citation: "JAOPS and Dymon Co., Ltd. (2025). Dymon YAOKI Lunar Rover Mission Data (IM-2).  Registry of Open Data on AWS." 
 Resources:
   - Description: |
       Time series data stored as csv and parquet for primary telemetry (TM) and telecommand (TC) channels.
@@ -23,13 +23,6 @@ Resources:
       Lunar surface imagery captured by the YAOKI imager, provided both as raw sensor
       payloads (.raw) and reconstructed PNG images.
     ARN: arn:aws:s3:::im2-yaoki-rover/images/*
-    Region: ap-northeast-1
-    Type: S3 Bucket
-  - Description: |
-      Yamcs server configuration, Mission Database (MDB / XTCE), and Docker setup
-      used during flight, enabling the archive to be replayed in an environment
-      identical to the one used in real operations.
-    ARN: arn:aws:s3:::im2-yaoki-rover/docker/*
     Region: ap-northeast-1
     Type: S3 Bucket
   - Description: |
