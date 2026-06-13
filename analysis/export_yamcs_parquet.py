@@ -8,6 +8,7 @@ import io
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+import numpy as np
 import pandas as pd
 import yaml
 from yamcs.client import YamcsClient
@@ -50,6 +51,8 @@ def scalar_value(value: Any) -> Any:
             return scalar_value(getattr(value, attr))
     if isinstance(value, bytes):
         return value.hex()
+    if isinstance(value, np.generic):
+        return value.item()
     if isinstance(value, (str, int, float, bool)):
         return value
     if hasattr(value, "isoformat"):
