@@ -64,9 +64,9 @@
 			</ParameterTypeSet>
 			<ParameterSet>
 				<Parameter name="temperature0" parameterTypeRef="temperature_t" 
-					shortDescription="Temperature in Degrees C of on enclosure by burn wire deployment mechanism" />
+					shortDescription="Temperature in Degrees C on enclosure by burn wire deployment mechanism" />
 				<Parameter name="temperature1" parameterTypeRef="temperature_t"  
-					shortDescription="Temperature in Degrees C of on enclosure by mounting bracket" />
+					shortDescription="Temperature in Degrees C on enclosure by mounting bracket" />
 				<Parameter name="streamQueuePercent" parameterTypeRef="percentage_t"  
 					shortDescription="Data in stream out queue needing to be sent" />
 				<Parameter name="streamCount" parameterTypeRef="uint32_t"  
