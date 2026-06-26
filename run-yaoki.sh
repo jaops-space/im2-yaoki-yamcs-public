@@ -15,6 +15,6 @@ echo "Ready."
 
 # Now open the two broswer windows
 xdg-open http://localhost:8090 & # Yamcs GUI
-xdg-open http://localhost:8888/lab/tree/analysis/yamcs_archive.ipynb & # Jupyter noteboo
+xdg-open http://localhost:8888/lab/tree/analysis/yamcs_archive.ipynb & # Jupyter notebook
 
-docker compose logs -f # And show the user the logs.
+docker compose logs -f # And show the user the logs

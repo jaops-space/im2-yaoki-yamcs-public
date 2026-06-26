@@ -1,8 +1,14 @@
 FROM ubuntu:24.04
 
 RUN apt-get update && apt-get install -y \
-    openjdk-17-jdk maven python3 python3-pip python3-venv git \
+    openjdk-17-jdk maven python3 python3-pip python3-venv git curl unzip \
     && rm -rf /var/lib/apt/lists/*
+
+RUN ARCH="$(uname -m)" \
+    && curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-${ARCH}.zip" -o /tmp/awscliv2.zip \
+    && unzip -q /tmp/awscliv2.zip -d /tmp \
+    && /tmp/aws/install \
+    && rm -rf /tmp/awscliv2.zip /tmp/aws
 
 WORKDIR /yaoki
 COPY . /yaoki
