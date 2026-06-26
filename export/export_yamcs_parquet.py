@@ -237,6 +237,8 @@ def main() -> None:
     for directory in (telemetry_dir, command_dir):
         directory.mkdir(parents=True, exist_ok=True)
 
+    print(f"Connecting to Yamcs at {args.url} instance {args.instance}")
+    print(f"make sure Yamcs server is running (follow README instructions)")
     client = YamcsClient(args.url)
     archive = client.get_archive(instance=args.instance)
 
