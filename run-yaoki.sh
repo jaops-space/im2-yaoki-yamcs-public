@@ -13,8 +13,26 @@ echo "Waiting for services..."
 until docker exec "$(docker compose ps -q)" test -f /ready 2>/dev/null; do :; done
 echo "Ready."
 
-# Now open the two broswer windows
-xdg-open http://localhost:8090 & # Yamcs GUI
-xdg-open http://localhost:8888/lab/tree/analysis/yamcs_archive.ipynb & # Jupyter notebook
+# Now open the two browser windows
+YAMCS_URL="http://localhost:8090"                                   # Yamcs GUI
+JUPYTER_URL="http://localhost:8888/lab/tree/analysis/yamcs_archive.ipynb" # Jupyter notebook
 
-docker compose logs -f # And show the user the logs
+if command -v xdg-open >/dev/null 2>&1; then
+    open_cmd="xdg-open"
+elif command -v open >/dev/null 2>&1; then
+    open_cmd="open" # macOS
+else
+    open_cmd=""
+fi
+
+if [[ -n "$open_cmd" ]]; then
+    "$open_cmd" "$YAMCS_URL" &
+    "$open_cmd" "$JUPYTER_URL" &
+else
+    echo "Could not auto-open a browser. Open these URLs manually:"
+    echo "  Yamcs GUI: $YAMCS_URL"
+    echo "  Jupyter:   $JUPYTER_URL"
+fi
+
+# docker compose logs -f # And show the user the logs
+echo "Services running. View logs with: docker compose logs -f"

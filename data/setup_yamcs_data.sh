@@ -15,6 +15,6 @@ DST="yamcs-data"
 
 rm -rf "$DST"
 mkdir -p "$DST"
-aws s3 cp "$SRC" "$DST"/ --recursive --region "$REGION"
+aws s3 cp "$SRC" "$DST"/ --recursive --no-sign-request --region "$REGION"
 
 echo "Copied $SRC -> $DST"

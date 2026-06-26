@@ -11,7 +11,9 @@ RUN ARCH="$(uname -m)" \
     && rm -rf /tmp/awscliv2.zip /tmp/aws
 
 WORKDIR /yaoki
-COPY . /yaoki
+
+# only copy whats needed to avoid time consuming cache misses
+COPY ./analysis/requirements.txt /yaoki/analysis/requirements.txt
 
 RUN python3 -m venv /opt/venv \
     && /opt/venv/bin/pip install --upgrade pip \
@@ -22,7 +24,8 @@ RUN python3 -m venv /opt/venv \
         --display-name "Python (YAOKI)" \
         --sys-prefix
 
-RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
+# copy everything else at the last moment
+COPY . /yaoki
 
 EXPOSE 8090 8888
 
