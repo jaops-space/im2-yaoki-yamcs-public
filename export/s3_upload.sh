@@ -12,4 +12,6 @@ aws s3 cp "$REPO/PublicRelease_YAOKI_IM2_data_analysis_by_JAOPS.pdf" "$BUCKET/" 
 aws s3 cp "$REPO/im2-yaoki-rover.yaml" "$BUCKET/" --region "$REGION"
 aws s3 cp "$REPO/export/yaoki_parquet/" "$BUCKET/timeseries/" --recursive --region "$REGION"
 aws s3 cp "$REPO/data/reconstructed_images/" "$BUCKET/images/" --recursive --region "$REGION"
-aws s3 cp "$REPO/data/yamcs-data-initial/" "$BUCKET/yamcs-data/" --recursive --region "$REGION"
+
+# only the first time:
+# aws s3 cp "$REPO/data/yamcs-data-initial/" "$BUCKET/yamcs-data/" --recursive --region "$REGION"
