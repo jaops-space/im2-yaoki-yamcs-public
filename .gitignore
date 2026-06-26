@@ -32,3 +32,5 @@ docker/all.log
 # Yamcs database
 # data/yamcs-data-initial includes data from Yaoki. Additional database entries from running Yamcs after the mission are not relevant and should be ignored
 ***/yamcs-data/***
+# Exported data
+***/yaoki_parquet/***

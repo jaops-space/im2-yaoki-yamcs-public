@@ -13,11 +13,11 @@ This repository publicly releases:
 Note: the interface and Yamcs link between the YAOKI mission control center and the Intuitive Machine's Mission Control Center includes credential and proprietary information so that part has been removed from this release,
 
 
-## Docker Setup
+## Option 1: Docker Setup
 ```bash
 ./run-yaoki.sh
 ```
-## Detailed Setup
+## Option 2: Detailed Setup
 1. Yamcs requires Java 17+, if not already installed on your system, use: 
 ```bash
 sudo apt install -y openjdk-25-jdk maven
@@ -32,7 +32,7 @@ cd im2-yaoki-yamcs-public/yamcs-server
 mvn yamcs:run
 ```
 
-You now have the same setup running as was used for the YAOKI mission!
+You now have the same Yamcs Mission Control System setup running as was used for the YAOKI mission!
 
 ## Usage
 View the telemetry and command history via the Yamcs Web interface
