@@ -23,3 +23,7 @@ PyYAML>=6.0
 # Jupyter notebook support
 jupyter>=1.0.0
 ipykernel>=6.0.0
+
+# Amazon AWS
+boto3
+botocore
