@@ -10,7 +10,9 @@ This repository publicly releases:
 - The data received: telemetry from the rover, the lander telemetry that was shared with the rover, the images captured on the Moon. 
 - the telecommands sent to the rover on the Moon
 
-Note: the interface and Yamcs link between the YAOKI mission control center and the Intuitive Machine's Mission Control Center includes credential and proprietary information so that part has been removed from this release.  There are three approaches to accessing the data.
+> *Note: the interface and Yamcs link between the YAOKI mission control center and the Intuitive Machine's Mission Control Center includes credential and proprietary information so that part has been removed from this release.*
+
+There are three approaches to accessing the data.
 
 ## Option 1: View Data using Notebooks
 
