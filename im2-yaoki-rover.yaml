@@ -10,7 +10,9 @@ Tags:
   - planetary
   - robotics
   - astronomy
+  - exploration
   - lunar
+Version: 1.0.0
 License: CC-BY-4.0
 Citation: "JAOPS and Dymon Co., Ltd. (2025). Dymon YAOKI Lunar Rover Mission Data (IM-2).  Registry of Open Data on AWS." 
 Resources:
@@ -28,9 +30,7 @@ Resources:
   - Description: |
       Complete mission archive: Yamcs RocksDB data store containing all received
       telemetry packets and parameters, sent telecommands, and engineering events from
-      the YAOKI rover and the relayed IM-2 lander telemetry. Includes both the
-      end-of-mission state (`yamcs-data/`) and the pristine pre-mission initial state
-      (`yamcs-data-initial/`) so the mission can be replayed from t-0.
+      the YAOKI rover and the relayed IM-2 lander telemetry. 
     ARN: arn:aws:s3:::im2-yaoki-rover/yamcs-data/*
     Region: ap-northeast-1
     Type: S3 Bucket
@@ -41,13 +41,11 @@ DataAtWork:
       NotebookURL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yamcs_tmtc.ipynb
       AuthorName: JAOPS
       AuthorURL: https://www.jaops.com/
-      Services: EC2  # TODO: adjust if a different AWS service is recommended for running the notebook
     - Title: Images from the YAOKI rover camera
-      URL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yamcs_tmtc.ipynb
-      NotebookURL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yamcs_tmtc.ipynb
+      URL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yamcs_images.ipynb
+      NotebookURL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yamcs_images.ipynb
       AuthorName: JAOPS
       AuthorURL: https://www.jaops.com/
-      Services: EC2  # TODO: adjust if a different AWS service is recommended for running the notebook
     - Title: Running the YAOKI Yamcs mission control stack locally via Docker
       URL: https://github.com/jaops-space/im2-yaoki-yamcs-public#docker-setup
       AuthorName: JAOPS
@@ -58,8 +56,9 @@ DataAtWork:
       AuthorName: Space Applications Services
       AuthorURL: https://www.spaceapplications.com/
   Publications:
-    - Title: TODO — add any mission papers, press articles, or post-mission reports here
-      URL: https://example.com/
-      AuthorName: TODO
-# ADXCategories:  # Optional. None of the existing ADX categories obviously fit a lunar mission dataset — leave commented out unless AWS Data Exchange listing is desired.
-#   - Public Sector Data
+    - Title: Analysis of the Data from the YAOKI Rover on the IM-2 Mission to the Lunar South Pole
+      URL: arn:aws:s3:::im2-yaoki-rover/PublicRelease_YAOKI_IM2_data_analysis_by_JAOPS.pdf
+      AuthorName: Louis Burtz
+    - Title: Data Release Announcement Presentation Slides
+      URL: arn:aws:s3:::im2-yaoki-rover/PublicRelease_Overview_Lunar_Ledger_YAOKI_Dymon_JAOPS.pdf
+      AuthorName: Shinichiro Nakajima, Alejandro Sela, Louis Burtz, Zack Gainsforth

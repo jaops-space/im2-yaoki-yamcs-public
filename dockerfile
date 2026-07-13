@@ -29,14 +29,14 @@ COPY . /yaoki
 
 EXPOSE 8090 8888
 
-CMD bash -lc './data/setup_yamcs_data.sh && cd /yaoki/yamcs-server && mvn yamcs:run & \
+CMD bash -lc 'rm -f /ready && ./data/setup_yamcs_data.sh && cd /yaoki/yamcs-server && mvn yamcs:run & \
     /opt/venv/bin/jupyter lab \
       --ip=0.0.0.0 \
       --port=8888 \
       --no-browser \
       --allow-root \
       --NotebookApp.token="" & \
-    until curl -sf http://localhost:8888/lab; do sleep 1; done && \
-    until curl -sf http://localhost:8090; do sleep 1; done && \
+    until curl -sf http://localhost:8888/lab >/dev/null; do sleep 1; done && \
+    until curl -sf http://localhost:8090 >/dev/null; do sleep 1; done && \
     touch /ready && \
     wait'
