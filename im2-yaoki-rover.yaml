@@ -37,13 +37,13 @@ Resources:
 DataAtWork:
   Tutorials:
     - Title: Plotting the YAOKI telemetry and telecommands
-      URL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yamcs_tmtc.ipynb
-      NotebookURL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yamcs_tmtc.ipynb
+      URL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yaoki_tmtc.ipynb
+      NotebookURL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yaoki_tmtc.ipynb
       AuthorName: JAOPS
       AuthorURL: https://www.jaops.com/
     - Title: Images from the YAOKI rover camera
-      URL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yamcs_images.ipynb
-      NotebookURL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yamcs_images.ipynb
+      URL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yaoki_images.ipynb
+      NotebookURL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/yaoki_images.ipynb
       AuthorName: JAOPS
       AuthorURL: https://www.jaops.com/
     - Title: Running the YAOKI Yamcs mission control stack locally via Docker
