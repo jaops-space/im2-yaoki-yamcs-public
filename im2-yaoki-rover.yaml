@@ -21,7 +21,7 @@ Resources:
     Region: ap-northeast-1
     Type: S3 Bucket
     Explore:
-    - '[Browse Bucket](https://im2-yaoki-rover.s3.amazonaws.com/index.html)'
+    - '[Browse Bucket](https://im2-yaoki-rover.s3.ap-northeast-1.amazonaws.com/index.html)'
   - Description: |
       Time series data stored as csv and parquet for primary telemetry (TM) and telecommand (TC) channels.
     ARN: arn:aws:s3:::im2-yaoki-rover/timeseries/*  
