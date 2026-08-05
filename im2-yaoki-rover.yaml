@@ -72,8 +72,8 @@ DataAtWork:
       AuthorURL: https://www.spaceapplications.com/
   Publications:
     - Title: Analysis of the Data from the YAOKI Rover on the IM-2 Mission to the Lunar South Pole
-      URL: arn:aws:s3:::im2-yaoki-rover/PublicRelease_YAOKI_IM2_data_analysis_by_JAOPS.pdf
+      URL: https://im2-yaoki-rover.s3.ap-northeast-1.amazonaws.com/PublicRelease_YAOKI_IM2_data_analysis_by_JAOPS.pdf 
       AuthorName: Louis Burtz
     - Title: Data Release Announcement Presentation Slides
-      URL: arn:aws:s3:::im2-yaoki-rover/PublicRelease_Overview_Lunar_Ledger_YAOKI_Dymon_JAOPS.pdf
+      URL: https://im2-yaoki-rover.s3.ap-northeast-1.amazonaws.com/PublicRelease_Overview_Lunar_Ledger_YAOKI_Dymon_JAOPS.pdf
       AuthorName: Shinichiro Nakajima, Alejandro Sela, Louis Burtz, Zack Gainsforth
