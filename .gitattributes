@@ -1,0 +1,25 @@
+# Default: let Git normalize line endings in text files it detects.
+* text=auto eol=lf
+
+# --- Must be LF or they break at runtime ---
+*.sh            text eol=lf
+dockerfile      text eol=lf
+Dockerfile      text eol=lf
+*.properties    text eol=lf
+
+# --- Text formats (explicit, so detection never guesses wrong) ---
+*.py            text eol=lf
+*.ipynb         text eol=lf
+*.yaml          text eol=lf
+*.yml           text eol=lf
+*.xml           text eol=lf
+*.md            text eol=lf
+*.txt           text eol=lf
+
+# --- Binary: never normalize, never text-diff ---
+*.png           binary
+*.raw           binary
+*.pdf           binary
+*.jpg           binary
+*.jpeg          binary
+*.svg           binary
