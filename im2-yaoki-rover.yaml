@@ -41,7 +41,7 @@ Resources:
     Region: ap-northeast-1
     Type: S3 Bucket
   - Description: Notifications for YAOKI data updates
-    ARN: arn:aws:sns:ap-northeast-1::im2-yaoki-sns-upates
+    ARN: arn:aws:sns:ap-northeast-1:533267366504:topic-im2-yaoki-rover
     Region: ap-northeast-1
     Type: SNS Topic
 DataAtWork:
