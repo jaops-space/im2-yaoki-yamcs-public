@@ -22,7 +22,7 @@ Resources:
     Explore:
     - '[Browse Bucket](https://im2-yaoki-rover.s3.ap-northeast-1.amazonaws.com/index.html)'
   - Description: |
-      Time series data stored as csv and parquet for primary telemetry (TM) and telecommand (TC) channels.
+      Time series data stored as parquet for primary telemetry (TM) and telecommand (TC) channels.
     ARN: arn:aws:s3:::im2-yaoki-rover/timeseries/*  
     Region: ap-northeast-1
     Type: S3 Bucket
@@ -45,7 +45,7 @@ Resources:
     Type: SNS Topic
 DataAtWork:
   Tutorials:
-    - Title: Get To Know A Dataset: YAOKI Lunar Rover IM-2 Mission Telemetry and Imagery Dataset
+    - Title: "Get To Know A Dataset: YAOKI Lunar Rover IM-2 Mission Telemetry and Imagery Dataset"
       URL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/get-to-know-a-dataset.ipynb
       NotebookURL: https://github.com/jaops-space/im2-yaoki-yamcs-public/blob/main/analysis/get-to-know-a-dataset.ipynb
       AuthorName: JAOPS
