@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Uploads data to S3 for public release
-# Note: JAOPS AWS credentials required
+# Note: Lunar Ledger AWS credentials required
 set -euo pipefail
 
-BUCKET="s3://im2-yaoki-rover"
+BUCKET="s3://im2-yaoki-rover-public"
 REGION="ap-northeast-1"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO="$(cd "$SCRIPT_DIR/.." && pwd)"

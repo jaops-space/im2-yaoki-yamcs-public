@@ -9,7 +9,7 @@ if ! command -v aws >/dev/null 2>&1; then
     exit 1
 fi
 
-SRC="s3://im2-yaoki-rover/yamcs-data/"
+SRC="s3://im2-yaoki-rover-public/yamcs-data/"
 REGION="ap-northeast-1"
 DST="yamcs-data"
 
